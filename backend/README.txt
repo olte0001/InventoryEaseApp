@@ -1,0 +1,1 @@
+All work done on IntelliJ IDEA for the backend Spring Boot will be saved in this subdirectory.
