@@ -16,8 +16,12 @@ import java.util.Objects;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long company_id;
+    @Column(name = "company_id")
+    private Long companyId;
 
-    private String company_name;
-    private String company_schema;
+    @Column(name = "company_name")
+    private String companyName;
+
+    @Column(name = "company_schema")
+    private String companySchema;
 }
