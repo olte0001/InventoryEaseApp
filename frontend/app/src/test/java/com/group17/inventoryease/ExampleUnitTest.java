@@ -1,4 +1,4 @@
-package com.example.inventoryease;
+package com.group17.inventoryease;
 
 import org.junit.Test;
 

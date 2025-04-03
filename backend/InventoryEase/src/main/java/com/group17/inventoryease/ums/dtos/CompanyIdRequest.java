@@ -6,4 +6,5 @@ public class CompanyIdRequest {
     public String getCompanyId() {
         return companyId;
     }
+
 }
