@@ -16,7 +16,8 @@ import java.util.Objects;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long location_id;
+    @Column(name = "location_id")
+    private Long locationId;
 
     private String location_name;
 

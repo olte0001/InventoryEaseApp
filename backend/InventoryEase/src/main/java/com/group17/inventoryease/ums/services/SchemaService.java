@@ -1,7 +1,5 @@
 package com.group17.inventoryease.ums.services;
 
-// This service fetches the name of the schema corresponding to a company
-
 @Service
 public class SchemaService {
     @Autowired

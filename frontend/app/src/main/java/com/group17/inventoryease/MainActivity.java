@@ -1,5 +1,6 @@
 package com.group17.inventoryease;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -46,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<CompanyIdResponse>() {
             @Override
             public void onResponse(Call<CompanyIdResponse> call, Response<CompanyIdResponse> response) {
-                if(response.isSuccessful()){
+                if(response.isSuccessful() && response.body() != null){
                     // Store the company name and move on to the logging page
-                    String companyName = response.body().getCompanyName();
+                    Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
+                    intent.putExtra("companyName", response.body().getCompanyName());
+                    startActivity(intent);
+                    finish();
                 } else {
                     // Display message of invalid company identifier
                 }

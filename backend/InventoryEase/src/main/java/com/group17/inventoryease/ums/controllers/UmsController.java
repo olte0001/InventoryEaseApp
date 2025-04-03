@@ -6,6 +6,11 @@ package com.group17.inventoryease.ums.controllers;
 *         https://www.baeldung.com/java-optional
 *         https://www.baeldung.com/spring-response-entity
 * */
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/ums")
@@ -28,5 +33,16 @@ public class UmsController {
                 })
                 // If a schema is not found, respond to the client with an error HTTP status (404 NOT FOUND).
                 .orElseGet(() -> ResponseEntiy.status(HttpStatus.NOT_FOUND).body(new CompanyIdResponse(false, "")));
+    }
+
+    // Source: https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request){
+        return authenticationService.authenticate(request)
+                .map(authenticatedUser -> {
+                    jwtService.generateToken(authenticatedUser);
+                    return ResponseEntity.ok(new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime()));
+                })
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND));
     }
 }

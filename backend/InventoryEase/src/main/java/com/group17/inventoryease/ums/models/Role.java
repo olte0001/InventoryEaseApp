@@ -16,7 +16,9 @@ import java.util.Objects;
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long role_id;
+    @Column(name = "role_id")
+    private Long roleId;
 
-    private String role_name;
+    @Column(name = "role_name")
+    private String roleName;
 }

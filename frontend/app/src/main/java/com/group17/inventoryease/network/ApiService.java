@@ -7,6 +7,8 @@ package com.group17.inventoryease.network;
 
 import com.group17.inventoryease.dtos.CompanyIdRequest;
 import com.group17.inventoryease.dtos.CompanyIdResponse;
+import com.group17.inventoryease.dtos.LoginRequest;
+import com.group17.inventoryease.dtos.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,4 +17,7 @@ import retrofit2.http.POST;
 public interface ApiService {
     @POST("api/ums/validate-company-identifier")
     Call<CompanyIdResponse> validateCompanyId(@Body CompanyIdRequest request);
+
+    @POST("login")
+    Call<LoginResponse> login(@Body LoginRequest request);
 }
