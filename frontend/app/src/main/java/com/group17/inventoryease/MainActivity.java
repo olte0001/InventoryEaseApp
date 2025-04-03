@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     // This method validates the company identifier inputted by the user.
     private void validateCompanyId(int companyId) {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         CompanyIdRequest request = new CompanyIdRequest(companyId);
 
         // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
