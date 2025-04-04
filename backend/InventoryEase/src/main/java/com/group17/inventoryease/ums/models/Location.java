@@ -19,7 +19,8 @@ public class Location {
     @Column(name = "location_id")
     private Long locationId;
 
-    private String location_name;
+    @Column(name = "location_name")
+    private String locationName;
 
     @ManyToMany(mappedBy="locations")
     private Set<User> users;

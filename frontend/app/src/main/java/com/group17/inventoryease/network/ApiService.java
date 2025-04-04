@@ -18,6 +18,6 @@ public interface ApiService {
     @POST("api/ums/validate-company-identifier")
     Call<CompanyIdResponse> validateCompanyId(@Body CompanyIdRequest request);
 
-    @POST("login")
+    @POST("api/ums/login")
     Call<LoginResponse> login(@Body LoginRequest request);
 }
