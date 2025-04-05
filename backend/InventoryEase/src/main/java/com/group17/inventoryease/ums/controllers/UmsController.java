@@ -45,4 +45,7 @@ public class UmsController {
                 })
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping("/current-location")
+    public 
 }
