@@ -30,4 +30,12 @@ public class Product {
 
     @Column(name = "threshold_min")
     private Integer thresholdMin;
+
+    @ManyToMany
+    @JoinTable(
+            name="product_supplier",
+            joinColumns=@JoinColumn(name="product_id"),
+            inverseJoinColumns=@JoinColumn(name="supplier_id")
+    )
+    private Set<Supplier> suppliers;
 }

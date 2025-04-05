@@ -26,4 +26,7 @@ public class Supplier {
 
     @Column(name = "phone_no")
     private Integer phoneNo;
+
+    @ManyToMany(mappedBy="suppliers")
+    private Set<Product> products;
 }
