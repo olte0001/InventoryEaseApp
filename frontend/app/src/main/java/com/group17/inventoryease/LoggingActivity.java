@@ -35,8 +35,9 @@ public class LoggingActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     String token = response.body().getToken();
-                    //TokenManager tokenManager = new TokenManager
-                    //tokenManager.saveToken(token);
+                    TokenManager tokenManager = new TokenManager(LoggingActivity.this);
+                    tokenManager.saveToken(token);
+
                     String company = getIntent().getStringExtra("companyName");
                     Intent intent = new Intent(LoggingActivity.this, DashboardActivity.class);
                     intent.putExtra("companyName", company);

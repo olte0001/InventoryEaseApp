@@ -1,4 +1,6 @@
 package com.group17.inventoryease;
 
-public class DashboardActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class DashboardActivity extends AppCompatActivity {
 }
