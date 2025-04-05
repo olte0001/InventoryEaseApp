@@ -45,8 +45,4 @@ public class User implements UserDetails {
     )
     private Set<Location> locations;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
 }
