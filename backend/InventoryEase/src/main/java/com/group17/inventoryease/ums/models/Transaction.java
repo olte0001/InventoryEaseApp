@@ -1,6 +1,6 @@
 package com.group17.inventoryease.ums.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
