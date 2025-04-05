@@ -9,6 +9,7 @@ import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
+import com.group17.inventoryease.network.CurrentLocationActivity;
 import com.group17.inventoryease.network.TokenManager;
 
 import retrofit2.Call;
@@ -35,10 +36,11 @@ public class LoggingActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     String token = response.body().getToken();
-                    //TokenManager tokenManager = new TokenManager
-                    //tokenManager.saveToken(token);
+                    TokenManager tokenManager = new TokenManager(LoggingActivity.this);
+                    tokenManager.saveToken(token);
+
                     String company = getIntent().getStringExtra("companyName");
-                    Intent intent = new Intent(LoggingActivity.this, DashboardActivity.class);
+                    Intent intent = new Intent(LoggingActivity.this, CurrentLocationActivity.class);
                     intent.putExtra("companyName", company);
                     startActivity(intent);
                     finish();
