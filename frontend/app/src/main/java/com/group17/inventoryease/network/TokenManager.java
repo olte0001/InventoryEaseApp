@@ -5,6 +5,14 @@ import android.content.SharedPreferences;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 // Source: https://proandroiddev.com/jwt-authentication-and-refresh-token-in-android-with-retrofit-interceptor-authenticator-da021f7f7534
 
 public class TokenManager {
@@ -40,5 +48,42 @@ public class TokenManager {
 
     public void deleteToken(){
         sharedPreferences.edit().remove("token").apply();
+    }
+
+    public String getUserRole() {
+        String token = getToken();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            return decodedJWT.getClaim("role").asString();
+        }
+        return null;
+    }
+
+    public List<String> getLocationIds() {
+        String token = getToken();
+        List<String> locationIds = new ArrayList<>();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Set<Long> locationSet = decodedJWT.getClaim("locations").as(Set.class);
+
+            if (locationSet != null){
+                for (Long locationId : locationSet){
+                    locationIds.add(locationId.toString());
+                }
+            }
+        }
+        return locationIds;
+    }
+
+    public String getCurrentLocation(){
+        return sharedPreferences.getString("current_location", null);
+    }
+
+    public void saveCurrentLocation(String locationId){
+        sharedPreferences.edit().putString("current_location", locationId).apply();
+    }
+
+    public void clearCurrentLocation(){
+        sharedPreferences.edit().remove("current_location").apply();
     }
 }

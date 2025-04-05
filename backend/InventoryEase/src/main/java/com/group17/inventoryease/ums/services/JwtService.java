@@ -31,7 +31,12 @@ public class JwtService {
 
     public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role"));}
 
-    public String extractLocations(String token) {return extractClaim();} // DONT FORGET TO DO IT
+    public Set<Long> extractLocations(String token) {
+        return extractClaim(token, claims -> {
+            Set<Long> locations = claims.get("locations");
+            return locations;
+        });
+    }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
