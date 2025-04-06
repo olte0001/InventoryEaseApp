@@ -1,0 +1,71 @@
+Index: frontend/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Hello World!\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/layout/activity_main.xml b/frontend/app/src/main/res/layout/activity_main.xml
+--- a/frontend/app/src/main/res/layout/activity_main.xml	(revision 27b6034badfa6826628667a9b7c9d60b6e10d5f5)
++++ b/frontend/app/src/main/res/layout/activity_main.xml	(date 1743976861392)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/main"
+@@ -7,13 +7,29 @@
+     android:layout_height="match_parent"
+     tools:context=".MainActivity">
+ 
++    <TextView
++        android:id="@+id/title"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/app_name"
++        android:layout_centerHorizontal="true"
++        android:textSize="32dp">
++    </TextView>
++
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Hello World!"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        android:id="@+id/usernamePropmt"
++        android:text="@string/usernamePropmt"
++        android:textSize="18sp"
++        android:layout_centerHorizontal="true"
++        android:layout_below="@+id/title"
++        ></TextView>
++
++    <EditText
++        android:layout_width="50dp"
++        android:layout_height="wrap_content"
++
++
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</RelativeLayout>
+\ No newline at end of file
+Index: frontend/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">InventoryEase</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/values/strings.xml b/frontend/app/src/main/res/values/strings.xml
+--- a/frontend/app/src/main/res/values/strings.xml	(revision 27b6034badfa6826628667a9b7c9d60b6e10d5f5)
++++ b/frontend/app/src/main/res/values/strings.xml	(date 1743976818143)
+@@ -1,3 +1,4 @@
+ <resources>
+     <string name="app_name">InventoryEase</string>
++    <string name="usernamePropmt">Username</string>
+ </resources>
+\ No newline at end of file
