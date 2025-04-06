@@ -31,11 +31,8 @@ public class JwtService {
 
     public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role"));}
 
-    public Set<Long> extractLocations(String token) {
-        return extractClaim(token, claims -> {
-            Set<Long> locations = claims.get("locations");
-            return locations;
-        });
+    public Map<String, String> extractLocations(String token) {
+        return extractClaim(token, claims -> (Map<String, String>) claims.get("locationIdToName"));
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -53,14 +50,16 @@ public class JwtService {
                 .stream()
                 .map(GrantedAuthority::getAuthority);
 
-        Set<Long> locationIds = user.getLocations()
+        Map<String, String> locationIdToName = user.getLocations()
                 .stream()
-                .map(Location::getLocationId)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toMap(
+                        log -> String.valueOf(loc.getLocationId()),
+                        Location::getLocationName
+                ));
 
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("role", role);
-        extraClaims.put("locations", locationIds);
+        extraClaims.put("locationIdToName", locationIdToName);
 
         return generateToken(extraClaims, userDetails);
     }

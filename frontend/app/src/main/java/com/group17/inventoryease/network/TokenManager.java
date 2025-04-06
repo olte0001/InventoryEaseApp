@@ -9,8 +9,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 // Source: https://proandroiddev.com/jwt-authentication-and-refresh-token-in-android-with-retrofit-interceptor-authenticator-da021f7f7534
@@ -59,20 +60,32 @@ public class TokenManager {
         return null;
     }
 
-    public List<String> getLocationIds() {
+    public String getLocationNameById(String locationId){
         String token = getToken();
-        List<String> locationIds = new ArrayList<>();
         if (token != null){
             DecodedJWT decodedJWT = JWT.decode(token);
-            Set<Long> locationSet = decodedJWT.getClaim("locations").as(Set.class);
+            Map<String, Object> map = decodedJWT.getClaim("locationIdToName").asMap();
 
-            if (locationSet != null){
-                for (Long locationId : locationSet){
-                    locationIds.add(locationId.toString());
-                }
+            if (map != null && map.containsKey(locationId)) {
+                return String.valueOf(map.get(locationId));
             }
         }
-        return locationIds;
+        return null;
+    }
+
+    public Map<String, String> getAllLocations() {
+        String token = getToken();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Map<String, Object> map = decodedJWT.getClaim("locationIdToName").asMap();
+            Map<String, String> locationMap = new HashMap<>();
+
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                locationMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+            }
+            return locationMap;
+        }
+        return new HashMap<>();
     }
 
     public String getCurrentLocation(){
