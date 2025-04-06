@@ -9,7 +9,6 @@ import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
-import com.group17.inventoryease.network.CurrentLocationActivity;
 import com.group17.inventoryease.network.TokenManager;
 
 import retrofit2.Call;
@@ -23,6 +22,7 @@ public class LoggingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // TODO: when submit button pressed, take user credentials and .loginUser() which is down below
     }
 
     private void loginUser(String username, String pwd) {
@@ -38,6 +38,7 @@ public class LoggingActivity extends AppCompatActivity {
                     String token = response.body().getToken();
                     TokenManager tokenManager = new TokenManager(LoggingActivity.this);
                     tokenManager.saveToken(token);
+                    // TODO: Session management (includes starting and ending session)
 
                     String company = getIntent().getStringExtra("companyName");
                     Intent intent = new Intent(LoggingActivity.this, CurrentLocationActivity.class);
@@ -45,13 +46,13 @@ public class LoggingActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // Display message of invalid credentials
+                    // TODO: Display message of invalid credentials
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                // Display message that error on our side and to retry
+                // TODO: Display message that error on our side and to retry
             }
         });
     }

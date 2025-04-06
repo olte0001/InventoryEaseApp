@@ -16,4 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- TODO:
+        Ask for a companyID
+    -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

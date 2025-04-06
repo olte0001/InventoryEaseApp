@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoggingActivity" />
+        <activity android:name=".CurrentLocationActivity" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".ReceiveActivity" />
     </application>
 
 </manifest>

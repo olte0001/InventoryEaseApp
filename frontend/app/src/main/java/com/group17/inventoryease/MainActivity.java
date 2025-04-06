@@ -31,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        /* TASK 1
-        * First page will ask for company identifier. If the identifier is valid, move on to the logging page. If not, error message.
-        * Use the validateCompanyId() method down below AND COMPLETE THE onResponse and onFailure METHODS!!!
+        /* TODO: Use the validateCompanyId() method down below AND COMPLETE THE onResponse and onFailure METHODS!!!
         * */
     }
 
@@ -54,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // Display message of invalid company identifier
+                    // TODO: Display message of invalid company identifier
                 }
             }
 
             @Override
             public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
-                // Display message that error on our side and to retry
+                // TODO: Display message that error on our side and to retry
             }
         });
     }
