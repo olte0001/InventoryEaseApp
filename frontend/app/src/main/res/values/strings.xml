@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">InventoryEase</string>
+    <string name="usernamePropmt">Username</string>
+    <string name="companyNamePrompt">Company Name</string>
+    <string name="submit">Submit</string>
+    <string name="passwordPropmt">Password</string>
 </resources>
