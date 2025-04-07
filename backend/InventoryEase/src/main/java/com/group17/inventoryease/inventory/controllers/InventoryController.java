@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/inventory")
 public class InventoryController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class InventoryController {
         return productService.getAllProductsWithSuppliers();
     }
 
-    @PostMapping("api/inventory/receive")
+    @PostMapping("/receive")
     public ResponseEntity<Void> receiveItem(@RequestBody ReceiveItemDTO item) {
            itemService.receiveItem(item);
            productService.updateQuantity(item.getProductId(), item.getItemQuantity());
