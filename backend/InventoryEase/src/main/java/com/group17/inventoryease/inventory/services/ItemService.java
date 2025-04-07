@@ -1,8 +1,19 @@
 package com.group17.inventoryease.inventory.services;
 
-import com.group17.inventoryease.ums.repositories.LocationRepository;
+import com.group17.inventoryease.inventory.models.Item;
+import com.group17.inventoryease.inventory.models.Product;
+import com.group17.inventoryease.inventory.models.Supplier;
 import com.group17.inventoryease.inventory.models.Locator;
+import com.group17.inventoryease.inventory.repositories.ItemRepository;
+import com.group17.inventoryease.inventory.repositories.ProductRepository;
+import com.group17.inventoryease.inventory.repositories.SupplierRepository;
+import com.group17.inventoryease.ums.repositories.LocationRepository;
+import com.group17.inventoryease.inventory.dtos.ReceiveItemDTO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ItemService {
     @Autowired
     private ProductRepository productRepository;

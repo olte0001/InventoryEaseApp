@@ -1,7 +1,19 @@
 package com.group17.inventoryease.inventory.services;
 
 import com.group17.inventoryease.inventory.dtos.ProductDTO;
+import com.group17.inventoryease.inventory.repositories.ProductRepository;
+import com.group17.inventoryease.inventory.models.Product;
+import com.group17.inventoryease.inventory.models.Supplier;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+
+@Service
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
