@@ -6,9 +6,10 @@ import com.group17.inventoryease.ums.configs.JwtAuthenticationFilter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.AuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,19 +30,18 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeHttpRequests()
-                // API endpoints are restricted to specific user roles (RBAC)
-                .requestMatchers("/api/ums/validate-company-identifier", "/api/ums/login").permitAll()
-                .requestMatchers("/api/inventory/**").hasAnyRole("HANDLER", "MANAGER")
-                // .requestMatchers("/api/transaction/**").hasRole("MANAGER")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+        http
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                // API endpoints are restricted to specific user roles (RBAC)
+                                .requestMatchers("/ums/validate-company-identifier", "/ums/login").permitAll()
+                                .requestMatchers("/inventory/**").hasAnyRole("HANDLER", "MANAGER")
+                                // .requestMatchers("/api/transaction/**").hasRole("MANAGER")
+                                .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

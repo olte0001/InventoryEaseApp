@@ -6,7 +6,7 @@ package com.group17.inventoryease.ums.services;
 * */
 
 import com.group17.inventoryease.ums.repositories.UserRepository;
-import com.group17.inventoryease.ums.model.User;
+import com.group17.inventoryease.ums.models.User;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;

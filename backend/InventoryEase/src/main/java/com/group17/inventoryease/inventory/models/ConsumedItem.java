@@ -1,8 +1,8 @@
 package com.group17.inventoryease.inventory.models;
 
-import com.group17.inventoryease.ums.models.Locator;
-import com.group17.inventoryease.ums.models.Supplier;
-import com.group17.inventoryease.ums.models.Product;
+import com.group17.inventoryease.inventory.models.Locator;
+import com.group17.inventoryease.inventory.models.Supplier;
+import com.group17.inventoryease.inventory.models.Product;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

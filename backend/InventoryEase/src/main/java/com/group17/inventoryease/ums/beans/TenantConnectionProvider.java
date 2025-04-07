@@ -1,16 +1,16 @@
 package com.group17.inventoryease.ums.beans;
 
 /*
- * The TenantConnectionProvider class manages the connecion with the database to set the current schema dynamically.
+ * The TenantConnectionProvider class manages the connection with the database to set the current schema dynamically.
  *
  * Source: https://spring.io/blog/2022/07/31/how-to-integrate-hibernates-multitenant-feature-with-spring-data-jpa-in-a-spring-boot-application
  * */
 
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
-import org.hibernate.HibernateException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -18,13 +18,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
 
-import org.springframework.orm.hibernate5.HibernatePropertiesCustomizer;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.UnknownKeyFor;
+import org.checkerframework.checker.initialization.qual.Initialized;
 
 @Component
-class TenantConnectionProvider implements MultiTenantConnectionProvider, HibernatePropertiesCustomizer {
+public class TenantConnectionProvider implements MultiTenantConnectionProvider<String>, HibernatePropertiesCustomizer {
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Override
     public Connection getAnyConnection() throws SQLException {
@@ -37,14 +39,14 @@ class TenantConnectionProvider implements MultiTenantConnectionProvider, Hiberna
     }
 
     @Override
-    public Connection getConnection(String schema) throws SQLException {
+    public Connection getConnection(String tenantIdentifier) throws SQLException {
         Connection connection = dataSource.getConnection();
-        connection.createStatement().execute("SET search_path TO " + schema);
+        connection.createStatement().execute("SET search_path TO " + tenantIdentifier);
         return connection;
     }
 
     @Override
-    public void releaseConnection(String s, Connection connection) throws SQLException {
+    public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
         connection.createStatement().execute("SET search_path TO PUBLIC");
         connection.close();
     }
@@ -54,4 +56,21 @@ class TenantConnectionProvider implements MultiTenantConnectionProvider, Hiberna
         hibernateProperties.put(AvailableSettings.MULTI_TENANT_CONNECTION_PROVIDER, this);
     }
 
+    @Override
+    public boolean supportsAggressiveRelease() {
+        return false;
+    }
+
+    @Override
+    @org.checkerframework.checker.nullness.qual.UnknownKeyFor
+    @org.checkerframework.checker.nullness.qual.NonNull
+    @org.checkerframework.checker.initialization.qual.Initialized
+    public boolean isUnwrappableAs(@org.checkerframework.checker.nullness.qual.UnknownKeyFor @org.checkerframework.checker.nullness.qual.NonNull @org.checkerframework.checker.initialization.qual.Initialized Class<@org.checkerframework.checker.nullness.qual.UnknownKeyFor @org.checkerframework.checker.nullness.qual.NonNull @org.checkerframework.checker.initialization.qual.Initialized ?> aClass) {
+        return false;
+    }
+
+    @Override
+    public <T> T unwrap(@org.checkerframework.checker.nullness.qual.UnknownKeyFor @org.checkerframework.checker.nullness.qual.NonNull @org.checkerframework.checker.initialization.qual.Initialized Class<T> aClass) {
+        return null;
+    }
 }

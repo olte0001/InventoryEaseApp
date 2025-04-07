@@ -8,7 +8,7 @@ package com.group17.inventoryease.ums.controllers;
 * */
 
 import com.group17.inventoryease.ums.services.SchemaService;
-import com.group17.inventoryease.ums.services.TenantIdentifierResolver;
+import com.group17.inventoryease.ums.beans.TenantIdentifierResolver;
 import com.group17.inventoryease.ums.services.AuthenticationService;
 import com.group17.inventoryease.ums.services.JwtService;
 import com.group17.inventoryease.ums.dtos.CompanyIdRequest;
@@ -42,11 +42,11 @@ public class UmsController {
 
     @PostMapping("/validate-company-identifier")
     public ResponseEntity<CompanyIdResponse> validateCompany(@RequestBody CompanyIdRequest request){
-        return schemaService.getSchemaByCompanyId(request.getCompanyId())
+        return schemaService.getSchemaByCompanyId(Long.valueOf(request.getCompanyId()))
                 // If a schema is found, set it has the current one and respond to the client with the company name (200 OK).
                 .map(schema -> {
                     tenantIdentifierResolver.setCurrentTenant(schema);
-                    String companyName = schemaService.getCompanyNameByCompanyId(request.getCompanyId())
+                    String companyName = schemaService.getCompanyNameByCompanyId(Long.valueOf(request.getCompanyId()))
                             .orElse("");
                     return ResponseEntity.ok(new CompanyIdResponse(true, companyName));
                 })
@@ -60,7 +60,7 @@ public class UmsController {
         return authenticationService.authenticate(request)
                 .map(authenticatedUser -> {
                     String jwtToken = jwtService.generateToken(authenticatedUser);
-                    return ResponseEntity.ok(new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime()));
+                    return ResponseEntity.ok(new LoginResponse(jwtToken, jwtService.getExpirationTime()));
                 })
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }

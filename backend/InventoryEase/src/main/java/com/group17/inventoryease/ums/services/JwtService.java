@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.authority.GrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 
 @Service
 public class JwtService {
@@ -35,7 +35,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role"));}
+    public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role").toString());}
 
     public Map<String, String> extractLocations(String token) {
         return extractClaim(token, claims -> (Map<String, String>) claims.get("locationIdToName"));
@@ -54,12 +54,12 @@ public class JwtService {
 
         String role = user.getAuthorities()
                 .stream()
-                .map(GrantedAuthority::getAuthority);
+                .map(GrantedAuthority::getAuthority).toString();
 
         Map<String, String> locationIdToName = user.getLocations()
                 .stream()
                 .collect(Collectors.toMap(
-                        log -> String.valueOf(loc.getLocationId()),
+                        log -> String.valueOf(log.getLocationId()),
                         Location::getLocationName
                 ));
 

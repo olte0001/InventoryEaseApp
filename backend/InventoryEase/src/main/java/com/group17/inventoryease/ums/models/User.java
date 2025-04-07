@@ -1,6 +1,5 @@
 package com.group17.inventoryease.ums.models;
 
-import com.group17.inventoryease.ums.models.Product;
 import com.group17.inventoryease.ums.models.Location;
 import com.group17.inventoryease.ums.models.Role;
 
@@ -61,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Set.of(new SimpleGrantedAuthority("ROLE_" + this.role.getName()));
+        return Set.of(new SimpleGrantedAuthority("ROLE_" + this.role.getRoleName()));
     }
 
     @Override

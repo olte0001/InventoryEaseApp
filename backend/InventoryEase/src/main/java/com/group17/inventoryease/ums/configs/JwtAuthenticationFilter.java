@@ -3,7 +3,7 @@ package com.group17.inventoryease.ums.configs;
 // All code in this class has been taken from https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac
 // https://exceptiondecoded.com/posts/spring-jwtvalidationexception/
 
-import com.group17.inventoryease.services.JwtService;
+import com.group17.inventoryease.ums.services.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -72,14 +72,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 } else {
-                    reponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token.");
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token.");
                     return;
                 }
             }
 
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
-            reponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED - Invalid or expired token.");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED - Invalid or expired token.");
             handlerExceptionResolver.resolveException(request, response, null, exception);
         }
     }

@@ -27,14 +27,15 @@ public class ProductService {
             productDTO.setProductId(product.getProductId());
             productDTO.setProductName(product.getProductName());
             productDTO.setCanExpire(product.getCanExpire());
-            productDTO.setTotalQty(product.getTotalQty());
+            productDTO.setTotalQty(product.getTotalQuantity());
             productDTO.setThresholdMin(product.getThresholdMin());
 
             Set<ProductDTO.SupplierDTO> supplierDTOSet = new HashSet<>();
             for(Supplier supplier : product.getSuppliers()){
-                ProductDTO.SupplierDTO supplierDTO = new ProductDTO.SupplierDTO();
-                supplierDTO.setSupplierId(supplier.getSupplierId());
-                supplierDTO.setSupplierName(supplier.getSupplierName());
+                ProductDTO.SupplierDTO supplierDTO = new ProductDTO.SupplierDTO(
+                        String.valueOf(supplier.getSupplierId()),
+                        supplier.getSupplierName()
+                );
                 supplierDTOSet.add(supplierDTO);
             }
 
@@ -45,7 +46,7 @@ public class ProductService {
     }
 
     public void updateQuantity(String productId, int qty){
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findById(Long.valueOf(productId))
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         int newTotalQty = product.getTotalQuantity() + qty;
         product.setTotalQuantity(newTotalQty);
