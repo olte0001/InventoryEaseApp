@@ -6,8 +6,6 @@ public class ProductDTO {
     private Long productId;
     private String productName;
     private Boolean canExpire;
-    private Integer totalQty;
-    private Integer thresholdMin;
     private Set<SupplierDTO> suppliers;
 
     public long getProductId() {
@@ -29,20 +27,6 @@ public class ProductDTO {
     }
     public void setCanExpire(Boolean canExpire) {
         this.canExpire = canExpire;
-    }
-
-    public Integer getTotalQty() {
-        return totalQty;
-    }
-    public void setTotalQty(Integer totalQty) {
-        this.totalQty = totalQty;
-    }
-
-    public Integer getThresholdMin() {
-        return thresholdMin;
-    }
-    public void setThresholdMin(Integer thresholdMin) {
-        this.thresholdMin = thresholdMin;
     }
 
     public Set<SupplierDTO> getSuppliers() {

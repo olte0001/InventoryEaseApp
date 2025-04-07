@@ -18,7 +18,7 @@ public class Item {
 
     @Id
     @Column(name = "item_id")
-    private String itemId;
+    private Long itemId;
 
     @Column(name = "item_quantity")
     private Integer itemQuantity;

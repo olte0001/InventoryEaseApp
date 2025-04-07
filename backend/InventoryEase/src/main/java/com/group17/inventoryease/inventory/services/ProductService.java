@@ -31,4 +31,12 @@ public class ProductService {
         }
         return productDTOList;
     }
+
+    public void updateQuantity(String productId, int qty){
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        int newTotalQty = product.getTotalQuantity() + qty;
+        product.setTotalQuantity(newTotalQty);
+        productRepository.save(product);
+    }
 }

@@ -7,6 +7,7 @@ package com.group17.inventoryease.network;
 
 import com.group17.inventoryease.dtos.CompanyIdRequest;
 import com.group17.inventoryease.dtos.CompanyIdResponse;
+import com.group17.inventoryease.dtos.ReceiveItemDTO;
 import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.dtos.ProductDTO;
@@ -27,4 +28,7 @@ public interface ApiService {
 
     @GET("api/inventory/products")
     Call<List<ProductDTO>> getAllProductsWithSuppliers();
+
+    @POST("api/inventory/receive")
+    Call<Void> receiveItem(@Body ReceiveItemDTO item);
 }
