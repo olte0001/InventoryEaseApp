@@ -2,6 +2,10 @@ package com.group17.inventoryease;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +26,24 @@ public class LoggingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // TODO: when submit button pressed, take user credentials and .loginUser() which is down below
+        // load company name
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String companyName = extras.getString("companyName");
+            ((TextView) findViewById(R.id.companyNameText)).setText(companyName);
+        }
+
+        // when submit button pressed, take user credentials and .loginUser() which is down below
+
+        Button submitButton = findViewById(R.id.loginSubmitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+                String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
+                loginUser(username, password);
+            }
+        });
     }
 
     private void loginUser(String username, String pwd) {
@@ -46,13 +67,19 @@ public class LoggingActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // TODO: Display message of invalid credentials
+                    // Display message of invalid credentials
+                    ((EditText) findViewById(R.id.usernameEdit)).getText().clear();
+                    ((EditText) findViewById(R.id.passwordEdit)).getText().clear();
+                    ((TextView) findViewById(R.id.loginErrorText)).setText("Error: Invalid Username or Password");
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                // TODO: Display message that error on our side and to retry
+                //  Display message that error on our side and to retry
+                ((EditText) findViewById(R.id.usernameEdit)).getText().clear();
+                ((EditText) findViewById(R.id.passwordEdit)).getText().clear();
+                ((TextView) findViewById(R.id.loginErrorText)).setText("Error: "+t);
             }
         });
     }
