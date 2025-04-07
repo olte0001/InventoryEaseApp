@@ -30,18 +30,18 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        //company EditText
-        EditText companyEntry = findViewById(R.id.companyNameEntry);
-        String companyname = "";
+        // Use the validateCompanyId() method down below
+
         //Submit company name button
         Button submitButton = findViewById(R.id.companySubmit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //company edittest
+                //company EditText
                 EditText companyEntry = findViewById(R.id.companyNameEntry);
                 String companyname = companyEntry.getText().toString();
                 validateCompanyId(Integer.valueOf(companyname));
+                //skip(companyname);
             }
         });
 
@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        /* TODO: Use the validateCompanyId() method down below AND COMPLETE THE onResponse and onFailure METHODS!!!
-        * */
     }
 
     // This method validates the company identifier inputted by the user.
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // TODO: Display message of invalid company identifier
+                    // Display message of invalid company identifier
                     ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                     ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found");
                 }
@@ -82,10 +80,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
-                // TODO: Display message that error on our side and to retry
+                //  Display message that error on our side and to retry
                 ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                 ((TextView) findViewById(R.id.companyErrorText)).setText("Error: "+t);
             }
         });
+    }
+
+    private void skip(String companyName){
+        Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
+        intent.putExtra("companyName", companyName);
+        startActivity(intent);
+        finish();
     }
 }
