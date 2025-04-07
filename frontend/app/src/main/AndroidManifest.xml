@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".LoggingActivity" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".ReceiveItemActivity" />
+        <activity android:name=".CurrentLocationActivity" />
     </application>
 
 </manifest>
