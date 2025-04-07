@@ -5,10 +5,13 @@ package com.group17.inventoryease.ums.services;
 import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.models.User;
 import com.group17.inventoryease.repositories.UserRepository;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -34,6 +37,6 @@ public class AuthenticationService {
                 )
         );
 
-        return userRepository.findByUsername(input.getUsername())
+        return userRepository.findByUsername(input.getUsername());
     }
 }

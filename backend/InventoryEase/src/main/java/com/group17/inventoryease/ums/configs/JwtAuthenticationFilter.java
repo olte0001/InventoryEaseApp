@@ -4,10 +4,12 @@ package com.group17.inventoryease.ums.configs;
 // https://exceptiondecoded.com/posts/spring-jwtvalidationexception/
 
 import com.group17.inventoryease.services.JwtService;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -76,7 +79,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
-            reponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED - Invalid or expired token.")
+            reponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED - Invalid or expired token.");
             handlerExceptionResolver.resolveException(request, response, null, exception);
         }
     }

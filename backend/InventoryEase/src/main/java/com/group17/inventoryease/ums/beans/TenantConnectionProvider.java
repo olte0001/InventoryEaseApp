@@ -6,8 +6,22 @@ package com.group17.inventoryease.ums.beans;
  * Source: https://spring.io/blog/2022/07/31/how-to-integrate-hibernates-multitenant-feature-with-spring-data-jpa-in-a-spring-boot-application
  * */
 
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
+import org.hibernate.HibernateException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Map;
+
+import org.springframework.orm.hibernate5.HibernatePropertiesCustomizer;
+
 @Component
-class ExampleConnectionProvider implements MultiTenantConnectionProvider, HibernatePropertiesCustomizer {
+class TenantConnectionProvider implements MultiTenantConnectionProvider, HibernatePropertiesCustomizer {
 
     @Autowired
     DataSource dataSource;

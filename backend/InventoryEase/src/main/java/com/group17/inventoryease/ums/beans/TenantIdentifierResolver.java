@@ -7,6 +7,20 @@ package com.group17.inventoryease.ums.beans;
 * Source: https://spring.io/blog/2022/07/31/how-to-integrate-hibernates-multitenant-feature-with-spring-data-jpa-in-a-spring-boot-application
 * */
 
+import org.hibernate.boot.model.naming.Identifier;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.event.spi.EventSource;
+import org.hibernate.MultiTenancyStrategy;
+import org.hibernate.internal.util.StringHelper;
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.orm.hibernate5.HibernatePropertiesCustomizer;
+
+import java.util.Map;
+
 @Component
 class TenantIdentifierResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
 
