@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/grey">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dashboardList"/>
 
     <!--
         TODO: section for actions with the following buttons
@@ -17,4 +23,4 @@
         TODO: Log Out somewhere depending on if banner
     -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

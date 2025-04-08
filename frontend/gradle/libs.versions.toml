@@ -12,6 +12,9 @@ retrofit = "2.9.0"
 gson_converter = "2.9.0"
 logging_interceptor =  "4.10.0"
 java_jwt = "3.18.2"
+qrScanner = "4.3.0"
+zxingJ = "3.5.3"
+
 
 
 [libraries]
@@ -27,7 +30,8 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 gsonConverter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "gson_converter" }
 loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "logging_interceptor" }
 javaJWT = { module = "com.auth0:java-jwt", version.ref = "java_jwt" }
-
+qr-scanner = {group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "qrScanner"}
+zxingJ=  {group = 'com.google.zxing', name = 'javase', version.ref = "zxingJ"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 

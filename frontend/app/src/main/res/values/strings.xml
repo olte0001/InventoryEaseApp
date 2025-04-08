@@ -4,4 +4,10 @@
     <string name="companyNamePrompt">Company Name</string>
     <string name="submit">Submit</string>
     <string name="passwordPropmt">Password</string>
+    <string name="Product">Product</string>
+    <string name="Supplier">Supplier</string>
+    <string name="Quantity">Quantity</string>
+    <string name="Continue">Continue</string>
+    <string name="Cancel">Cancel</string>
+    <string name="SerialNumber">Serial Number</string>
 </resources>

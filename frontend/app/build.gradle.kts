@@ -39,6 +39,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.securityCrypto)
     implementation(libs.retrofit)
+    implementation(libs.zxingJ)
+    implementation(libs.qr.scanner)
     implementation(libs.gsonConverter)
     implementation(libs.loggingInterceptor)
     implementation(libs.javaJWT)

@@ -21,6 +21,8 @@ import retrofit2.Response;
 
 public class LoggingActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -41,7 +43,8 @@ public class LoggingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
                 String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
-                loginUser(username, password);
+                //loginUser(username, password);
+                skip();
             }
         });
     }
@@ -82,5 +85,12 @@ public class LoggingActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.loginErrorText)).setText("Error: "+t);
             }
         });
+    }
+
+    public void skip(){
+        Intent intent = new Intent(LoggingActivity.this, DashboardActivity.class);
+        intent.putExtra("role", "handler");
+        startActivity(intent);
+        finish();
     }
 }

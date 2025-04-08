@@ -13,10 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.group17.inventoryease.dtos.Company;
 import com.group17.inventoryease.dtos.CompanyIdRequest;
 import com.group17.inventoryease.dtos.CompanyIdResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
+import com.group17.inventoryease.network.CompanyAPI;
+import com.group17.inventoryease.network.RetroFitService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,11 +27,16 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CompanyAPI companyAPI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        RetroFitService retroFitService  = new RetroFitService();
+        companyAPI = retroFitService.getRetrofit().create(CompanyAPI.class);
 
         // Use the validateCompanyId() method down below
 
@@ -39,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //company EditText
                 EditText companyEntry = findViewById(R.id.companyNameEntry);
-                String companyname = companyEntry.getText().toString();
-                validateCompanyId(Integer.valueOf(companyname));
-                //skip(companyname);
+                String companyId = companyEntry.getText().toString();
+                validateCompanyId(companyId);
+
             }
         });
 
@@ -56,31 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // This method validates the company identifier inputted by the user.
-    private void validateCompanyId(int companyId) {
-        ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
-        CompanyIdRequest request = new CompanyIdRequest(companyId);
-
-        // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
-        Call<CompanyIdResponse> call = apiService.validateCompanyId(request);
-        call.enqueue(new Callback<CompanyIdResponse>() {
+    private void validateCompanyId(String companyId) {
+        Company company = new Company();
+        company.setId(Long.valueOf(companyId));
+        companyAPI.findCompanyById(company).enqueue(new Callback<Company>() {
             @Override
-            public void onResponse(Call<CompanyIdResponse> call, Response<CompanyIdResponse> response) {
-                if(response.isSuccessful() && response.body() != null){
-                    // Store the company name and move on to the logging page
-                    Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
-                    intent.putExtra("companyName", response.body().getCompanyName());
-                    startActivity(intent);
-                    finish();
-                } else {
-                    // Display message of invalid company identifier
-                    ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
-                    ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found");
-                }
+            public void onResponse(Call<Company> call, Response<Company> response) {
+                Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
+                intent.putExtra("companyName", response.body().getName());
+                startActivity(intent);
+                finish();
             }
 
             @Override
-            public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
-                //  Display message that error on our side and to retry
+            public void onFailure(Call<Company> call, Throwable t) {
                 ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                 ((TextView) findViewById(R.id.companyErrorText)).setText("Error: "+t);
             }
