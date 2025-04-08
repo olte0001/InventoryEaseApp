@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -5,15 +6,56 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/welcome_text"
+        android:id="@+id/dashboard_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to InventoryEase"
-        android:textSize="18sp"
-        android:paddingBottom="16dp"/>
+        android:text="InventoryEase Dashboard"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 
-    <ListView
-        android:id="@+id/action_list"
+    <Button
+        android:id="@+id/receive_inventory_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:text="Receive Inventory"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/search_inventory_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Inventory"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/move_inventory_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Move Inventory"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/consume_inventory_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consume Inventory"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/transaction_logs_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transaction Logs"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/inventory_thresholds_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inventory Thresholds"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"/>
+
 </LinearLayout>

@@ -11,6 +11,7 @@ import com.group17.inventoryease.dtos.ReceiveItemDTO;
 import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.dtos.ProductDTO;
+import com.group17.inventoryease.dtos.LocationDTO;
 
 import java.util.List;
 
@@ -28,6 +29,9 @@ public interface ApiService {
 
     @GET("api/inventory/products")
     Call<List<ProductDTO>> getAllProductsWithSuppliers();
+
+    @GET("locations")
+    Call<List<LocationDTO>> getLocations();
 
     @POST("api/inventory/receive")
     Call<Void> receiveItem(@Body ReceiveItemDTO item);

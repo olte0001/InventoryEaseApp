@@ -2,23 +2,26 @@ package com.group17.inventoryease;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.group17.inventoryease.dtos.CompanyIdRequest;
 import com.group17.inventoryease.dtos.CompanyIdResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText companyIdInput;
+    private Button submitCompanyIdButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,28 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        /* TODO: Use the validateCompanyId() method down below AND COMPLETE THE onResponse and onFailure METHODS!!!
-        * */
+        // Initialize views
+        companyIdInput = findViewById(R.id.company_id_input);
+        submitCompanyIdButton = findViewById(R.id.submit_company_id_button);
+
+        // Set up button click listener to validate company ID
+        submitCompanyIdButton.setOnClickListener(v -> {
+            String companyIdString = companyIdInput.getText().toString().trim();
+            if (companyIdString.isEmpty()) {
+                companyIdInput.setError("Company ID is required");
+                return;
+            }
+
+            int companyId;
+            try {
+                companyId = Integer.parseInt(companyIdString);
+            } catch (NumberFormatException e) {
+                companyIdInput.setError("Invalid Company ID");
+                return;
+            }
+
+            validateCompanyId(companyId);
+        });
     }
 
     // This method validates the company identifier inputted by the user.
@@ -40,25 +63,28 @@ public class MainActivity extends AppCompatActivity {
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         CompanyIdRequest request = new CompanyIdRequest(companyId);
 
-        // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
         Call<CompanyIdResponse> call = apiService.validateCompanyId(request);
         call.enqueue(new Callback<CompanyIdResponse>() {
             @Override
             public void onResponse(Call<CompanyIdResponse> call, Response<CompanyIdResponse> response) {
-                if(response.isSuccessful() && response.body() != null){
+                if (response.isSuccessful() && response.body() != null) {
                     // Store the company name and move on to the logging page
                     Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
                     intent.putExtra("companyName", response.body().getCompanyName());
                     startActivity(intent);
                     finish();
                 } else {
-                    // TODO: Display message of invalid company identifier
+                    // Display message of invalid company identifier
+                    Toast.makeText(MainActivity.this, "Invalid Company ID", Toast.LENGTH_LONG).show();
+                    companyIdInput.setText(""); // Clear the input for retry
                 }
             }
 
             @Override
             public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
-                // TODO: Display message that error on our side and to retry
+                // Display message that error on our side and to retry
+                Toast.makeText(MainActivity.this, "Error on our side. Please retry.", Toast.LENGTH_LONG).show();
+                companyIdInput.setText(""); // Clear the input for retry
             }
         });
     }
