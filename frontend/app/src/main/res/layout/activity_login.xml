@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:id="@+id/usernamePrompt"
-        android:text="@string/usernamePropmt"
+        android:text="@string/usernamePrompt"
         android:layout_alignLeft="@id/usernameEdit"
         android:textSize="18sp"/>
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/usernameEdit"
         android:id="@+id/passwordPropmt"
-        android:text="@string/passwordPropmt"
+        android:text="@string/passwordPrompt"
         android:layout_alignLeft="@id/usernameEdit"
         android:textSize="18sp"/>
 

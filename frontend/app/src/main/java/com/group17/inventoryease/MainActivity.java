@@ -2,6 +2,7 @@ package com.group17.inventoryease;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CompanyIdResponse> call, Response<CompanyIdResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
+                    Log.e("MainActivity", "Response Code: " + response.code());
                     // Store the company name and move on to the logging page
                     Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
                     intent.putExtra("companyName", response.body().getCompanyName());
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // Display message of invalid company identifier
+                    Log.e("MainActivity", "Error: Company name not found. Response Code: " + response.code());
                     ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                     ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found");
                 }
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 //  Display message that error on our side and to retry
                 ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                 ((TextView) findViewById(R.id.companyErrorText)).setText("Error: "+t);
+                Log.e("MainActivity", "Validate Company Error", t);
             }
         });
     }

@@ -24,6 +24,8 @@ public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver
         currentTenant = tenant;
     }
 
+    public String getCurrentTenant() {return currentTenant;}
+
     @Override
     public String resolveCurrentTenantIdentifier() {
         return currentTenant;

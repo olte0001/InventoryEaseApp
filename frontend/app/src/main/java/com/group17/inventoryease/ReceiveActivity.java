@@ -30,8 +30,9 @@ public class ReceiveActivity extends AppCompatActivity {
     private Spinner supplierSpinner;
     private EditText qtyEditText;
     private EditText expEditText;
-    private Button sumbitButton;
+    private Button confirmButton;
     private Button cancelButton;
+    private Button continueButton;
 
     private List<ProductDTO> products;
     private ProductDTO selectedProduct;
@@ -42,41 +43,37 @@ public class ReceiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
-        // TODO: declare all views after putting them in the layout
         productSpinner = findViewById(R.id.product_spinner);
         supplierSpinner = findViewById(R.id.supplier_spinner);
+        qtyEditText = findViewById(R.id.quantityEdit);
+        expEditText = findViewById(R.id.expirationDateEditText);
+        continueButton = findViewById(R.id.confirmContinueButton);
+        confirmButton = findViewById(R.id.confirmConfirmButton);
+        cancelButton = findViewById(R.id.ConfirmCancelButton);
 
-        // Set initial visibility (only product spinner is visible when the activity loads)
+        // Set initial visibility
+        productSpinner.setVisibility(View.VISIBLE);
+        cancelButton.setVisibility(View.VISIBLE);
         supplierSpinner.setVisibility(View.GONE);
         qtyEditText.setVisibility(View.GONE);
         expEditText.setVisibility(View.GONE);
-        sumbitButton.setVisibility(View.GONE);
+        confirmButton.setVisibility(View.GONE);
+        continueButton.setVisibility(View.GONE);
 
         getPreApprovedProducts();
 
         cancelButton.setOnClickListener(v -> {
-            // TODO: finish activity and go to dashboard activity
+            // TODO: clear page and go to dashboard activity
         });
 
-        sumbitButton.setOnClickListener(v -> {
-            // TODO: get qty, expirationDate and receivedDate (current)
-            int qty;
-            LocalDateTime expirationDate;
-            LocalDateTime receivedDate;
+        confirmButton.setOnClickListener(v -> {
+            addToInventory();
+            // TODO: then returns to dashboard
+        });
 
-            ReceiveItemDTO item = new ReceiveItemDTO();
-            item.setItemQuantity(qty);
-            item.setExpirationDate(selectedProduct.getCanExpire() ? expirationDate : null);
-            item.setReceivedDate(receivedDate);
-            item.setProductId(String.valueOf(selectedProduct.getProductId()));
-            item.setSupplierId(selectedSupplier.getSupplierId());
-            TokenManager tokenManager = new TokenManager(ReceiveActivity.this);
-            item.setLocationId(tokenManager.getCurrentLocation());
-
-            addToInventory(item);
-
-            // TODO: clear page, display item added and if continue
-            //  if user wants to "Continue", reload this page for new form
+        continueButton.setOnClickListener(v -> {
+            addToInventory();
+            // TODO: start all over again
         });
     }
 
@@ -122,7 +119,8 @@ public class ReceiveActivity extends AppCompatActivity {
 
                 supplierSpinner.setVisibility(View.VISIBLE);
                 qtyEditText.setVisibility(View.VISIBLE);
-                sumbitButton.setVisibility(View.VISIBLE);
+                confirmButton.setVisibility(View.VISIBLE);
+                continueButton.setVisibility(View.VISIBLE);
 
                 if (selectedProduct.getCanExpire()){
                     expEditText.setVisibility(View.VISIBLE);
@@ -159,7 +157,21 @@ public class ReceiveActivity extends AppCompatActivity {
         });
     }
 
-    private void addToInventory(ReceiveItemDTO item) {
+    private void addToInventory() {
+        int quantity = Integer.parseInt(qtyEditText.getText().toString());
+
+        // TODO: retrieve a LocalDateTime from date picker
+        LocalDateTime expirationDate = null;
+
+        ReceiveItemDTO item = new ReceiveItemDTO();
+        item.setItemQuantity(quantity);
+        item.setExpirationDate(selectedProduct.getCanExpire() ? expirationDate : null);
+        item.setReceivedDate(LocalDateTime.now());
+        item.setProductId(String.valueOf(selectedProduct.getProductId()));
+        item.setSupplierId(selectedSupplier.getSupplierId());
+        TokenManager tokenManager = new TokenManager(ReceiveActivity.this);
+        item.setLocationId(tokenManager.getCurrentLocation());
+
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
 
         // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
@@ -167,7 +179,6 @@ public class ReceiveActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                // TODO:
             }
 
             @Override
