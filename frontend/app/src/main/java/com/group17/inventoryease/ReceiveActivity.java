@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -31,8 +29,6 @@ import retrofit2.Response;
 public class ReceiveActivity extends AppCompatActivity {
     private Spinner productSpinner;
     private Spinner supplierSpinner;
-    private EditText quantityEdit;
-    private LinearLayout confirmLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,17 +38,11 @@ public class ReceiveActivity extends AppCompatActivity {
         // TODO: declare all views
         productSpinner = findViewById(R.id.product_spinner);
         supplierSpinner = findViewById(R.id.supplier_spinner);
-        quantityEdit = findViewById(R.id.quantityEdit);
-        confirmLayout = findViewById(R.id.confirmLayout);
-
 
         // TODO: Set initial visibility (only product spinner is visible when the activity loads)
         supplierSpinner.setVisibility(View.GONE);
-        quantityEdit.setVisibility(View.GONE);
-        confirmLayout.setVisibility(View.GONE);
 
-
-        //getPreApprovedProducts();
+        getPreApprovedProducts();
         /* Here is the flow:
         *  If getPreApprovedProducts() is successful in fetching all of the products, it calls populateProductSpinner(products) to populate the drop down list for the products.
         * */

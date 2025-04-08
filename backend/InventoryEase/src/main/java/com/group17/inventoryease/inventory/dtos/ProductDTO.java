@@ -1,5 +1,7 @@
 package com.group17.inventoryease.inventory.dtos;
 
+import java.util.Set;
+
 public class ProductDTO {
     private Long productId;
     private String productName;
@@ -51,18 +53,22 @@ public class ProductDTO {
     }
 
     public static class SupplierDTO {
-        private String supplierId;
+        private Long supplierId;
         private String supplierName;
 
-        public SupplierDTO(String supplierId, String supplierName) {
+        public SupplierDTO(Long supplierId, String supplierName) {
             this.supplierId = supplierId;
             this.supplierName = supplierName;
         }
 
-        public String getSupplierId() {
+        public SupplierDTO() {
+
+        }
+
+        public Long getSupplierId() {
             return supplierId;
         }
-        public void setSupplierId(String supplierId) {
+        public void setSupplierId(Long supplierId) {
             this.supplierId = supplierId;
         }
 

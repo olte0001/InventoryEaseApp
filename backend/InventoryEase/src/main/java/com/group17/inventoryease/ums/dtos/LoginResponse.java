@@ -10,6 +10,8 @@ public class LoginResponse {
         return token;
     }
 
+    public void setToken(String token) { token = token; }
+
     public long getExpiresIn() {
         return expiresIn;
     }

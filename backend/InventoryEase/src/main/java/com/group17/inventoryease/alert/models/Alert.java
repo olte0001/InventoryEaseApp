@@ -1,4 +1,4 @@
-package com.group17.inventoryease.ums.models;
+package com.group17.inventoryease.alert.models;
 
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
