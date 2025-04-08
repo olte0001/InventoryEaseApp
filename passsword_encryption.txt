@@ -1,0 +1,19 @@
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.Scanner;
+
+public class BcryptPasswordGenerator {
+    public static void main(String[] args) {
+      
+        int strength = 12;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the password to encrypt: ");
+        String rawPassword = scanner.nextLine();
+
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+
+        System.out.println("Encrypted password: " + encodedPassword);
+    }
+}
