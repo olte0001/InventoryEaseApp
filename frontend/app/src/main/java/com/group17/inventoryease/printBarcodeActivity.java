@@ -26,6 +26,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.group17.inventoryease.barcode.Barcode;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
@@ -57,8 +58,8 @@ public class printBarcodeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String serialNumber = ((EditText) findViewById(R.id.serialNumberEdit)).getText().toString();
                 try {
-                    Bitmap bitmap = createBarcode(serialNumber);
-                    printBarcode(bitmap);
+                    Barcode barcode = new Barcode(serialNumber, BarcodeFormat.QR_CODE, 200,200);
+                    barcode.printBarcode(view.getContext());
                 } catch (WriterException e) {
                     throw new RuntimeException(e);
                 }
@@ -72,20 +73,6 @@ public class printBarcodeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-
-    private void printBarcode(Bitmap bitmap) {
-        PrintHelper qrcodePrinter = new PrintHelper(this);
-        qrcodePrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-        qrcodePrinter.printBitmap("BarcodePrint", bitmap);
-    }
-
-    private Bitmap createBarcode(String serialNumber) throws WriterException {
-        BarcodeEncoder encoder  = new BarcodeEncoder();
-        Bitmap bitmap = encoder.encodeBitmap(serialNumber,BarcodeFormat.QR_CODE,200,200);
-        ImageView barcodeImage = findViewById(R.id.barcodeImage);
-        barcodeImage.setImageBitmap(bitmap);
-        return bitmap;
     }
 
 }
