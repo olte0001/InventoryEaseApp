@@ -2,20 +2,26 @@ package com.group17.inventoryease.ums.services;
 
 // All code in this class has been taken from https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import com.group17.inventoryease.ums.models.Location;
+import com.group17.inventoryease.ums.models.User;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
@@ -29,7 +35,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role"));}
+    public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role")).toString();}
 
     public Map<String, String> extractLocations(String token) {
         return extractClaim(token, claims -> (Map<String, String>) claims.get("locationIdToName"));
@@ -48,12 +54,12 @@ public class JwtService {
 
         String role = user.getAuthorities()
                 .stream()
-                .map(GrantedAuthority::getAuthority);
+                .map(GrantedAuthority::getAuthority).toString();
 
         Map<String, String> locationIdToName = user.getLocations()
                 .stream()
                 .collect(Collectors.toMap(
-                        log -> String.valueOf(loc.getLocationId()),
+                        log -> String.valueOf(log.getLocationId()),
                         Location::getLocationName
                 ));
 
@@ -84,7 +90,7 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .signWith(SignatureAlgorithm.HS256, getSignInKey())
                 .compact();
     }
 

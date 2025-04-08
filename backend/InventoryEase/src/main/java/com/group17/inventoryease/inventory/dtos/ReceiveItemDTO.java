@@ -1,10 +1,12 @@
 package com.group17.inventoryease.inventory.dtos;
 
+import java.time.LocalDateTime;
+
 public class ReceiveItemDTO {
     private Integer itemQuantity;
     private LocalDateTime receivedDate;
     private LocalDateTime expirationDate;
-    private String productId;
+    private Long productId;
     private String supplierId;
     private String locationId;
 
@@ -29,11 +31,11 @@ public class ReceiveItemDTO {
         this.expirationDate = expirationDate;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

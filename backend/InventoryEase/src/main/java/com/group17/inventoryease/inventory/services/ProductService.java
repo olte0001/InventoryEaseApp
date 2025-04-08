@@ -1,7 +1,18 @@
 package com.group17.inventoryease.inventory.services;
 
 import com.group17.inventoryease.inventory.dtos.ProductDTO;
+import com.group17.inventoryease.inventory.models.Product;
+import com.group17.inventoryease.inventory.models.Supplier;
+import com.group17.inventoryease.inventory.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Service
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -15,7 +26,7 @@ public class ProductService {
             productDTO.setProductId(product.getProductId());
             productDTO.setProductName(product.getProductName());
             productDTO.setCanExpire(product.getCanExpire());
-            productDTO.setTotalQty(product.getTotalQty());
+            productDTO.setTotalQty(product.getTotalQuantity());
             productDTO.setThresholdMin(product.getThresholdMin());
 
             Set<ProductDTO.SupplierDTO> supplierDTOSet = new HashSet<>();
@@ -32,7 +43,7 @@ public class ProductService {
         return productDTOList;
     }
 
-    public void updateQuantity(String productId, int qty){
+    public void updateQuantity(Long productId, int qty){
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         int newTotalQty = product.getTotalQuantity() + qty;

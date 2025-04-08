@@ -1,6 +1,8 @@
-package com.group17.inventoryease.ums.models;
+package com.group17.inventoryease.inventory.models;
 
 import javax.persistence.*;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ public class Item {
 
     @Id
     @Column(name = "item_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
 
     @Column(name = "item_quantity")

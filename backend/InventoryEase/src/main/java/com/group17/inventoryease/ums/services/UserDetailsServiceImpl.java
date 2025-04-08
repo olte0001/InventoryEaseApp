@@ -5,6 +5,14 @@ package com.group17.inventoryease.ums.services;
 * Source: https://medium.com/@bubu.tripathy/role-based-access-control-with-spring-security-ca59d2ce80b0
 * */
 
+import com.group17.inventoryease.ums.models.User;
+import com.group17.inventoryease.ums.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
