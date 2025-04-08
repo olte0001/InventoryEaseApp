@@ -45,4 +45,18 @@ public class User implements UserDetails {
     )
     private Set<Location> locations;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Set.of(new SimpleGrantedAuthority("ROLE_" + this.role.getName()));
+    }
+
+    @Override
+    public String getUsername() {
+        return username.toString();
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
 }

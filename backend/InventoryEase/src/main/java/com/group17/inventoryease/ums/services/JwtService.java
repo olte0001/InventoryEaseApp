@@ -31,6 +31,10 @@ public class JwtService {
 
     public String extractRole(String token) {return extractClaim(token, claims -> claims.get("role"));}
 
+    public Map<String, String> extractLocations(String token) {
+        return extractClaim(token, claims -> (Map<String, String>) claims.get("locationIdToName"));
+    }
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -40,12 +44,22 @@ public class JwtService {
     // It passes them as arguments to the next "generateToken" method, which will return the token string which is then returned by this method.
     public String generateToken(UserDetails userDetails) {
         // Source: https://stackoverflow.com/questions/63334575/role-based-authorization-using-jwt-spring-security
-        String role = userDetails.getAuthorities()
+        User user = (User) userDetails;
+
+        String role = user.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority);
 
+        Map<String, String> locationIdToName = user.getLocations()
+                .stream()
+                .collect(Collectors.toMap(
+                        log -> String.valueOf(loc.getLocationId()),
+                        Location::getLocationName
+                ));
+
         Map<String, Object> extraClaims = new HashMap<>();
-        claims.put("role", role);
+        extraClaims.put("role", role);
+        extraClaims.put("locationIdToName", locationIdToName);
 
         return generateToken(extraClaims, userDetails);
     }

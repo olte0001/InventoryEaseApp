@@ -5,6 +5,15 @@ import android.content.SharedPreferences;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 // Source: https://proandroiddev.com/jwt-authentication-and-refresh-token-in-android-with-retrofit-interceptor-authenticator-da021f7f7534
 
 public class TokenManager {
@@ -40,5 +49,54 @@ public class TokenManager {
 
     public void deleteToken(){
         sharedPreferences.edit().remove("token").apply();
+    }
+
+    public String getUserRole() {
+        String token = getToken();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            return decodedJWT.getClaim("role").asString();
+        }
+        return null;
+    }
+
+    public String getLocationNameById(String locationId){
+        String token = getToken();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Map<String, Object> map = decodedJWT.getClaim("locationIdToName").asMap();
+
+            if (map != null && map.containsKey(locationId)) {
+                return String.valueOf(map.get(locationId));
+            }
+        }
+        return null;
+    }
+
+    public Map<String, String> getAllLocations() {
+        String token = getToken();
+        if (token != null){
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Map<String, Object> map = decodedJWT.getClaim("locationIdToName").asMap();
+            Map<String, String> locationMap = new HashMap<>();
+
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                locationMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+            }
+            return locationMap;
+        }
+        return new HashMap<>();
+    }
+
+    public String getCurrentLocation(){
+        return sharedPreferences.getString("current_location", null);
+    }
+
+    public void saveCurrentLocation(String locationId){
+        sharedPreferences.edit().putString("current_location", locationId).apply();
+    }
+
+    public void clearCurrentLocation(){
+        sharedPreferences.edit().remove("current_location").apply();
     }
 }

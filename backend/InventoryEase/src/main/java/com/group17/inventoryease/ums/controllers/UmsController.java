@@ -43,6 +43,6 @@ public class UmsController {
                     jwtService.generateToken(authenticatedUser);
                     return ResponseEntity.ok(new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime()));
                 })
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND));
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 }

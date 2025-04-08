@@ -1,5 +1,7 @@
 package com.group17.inventoryease.ums.services;
 
+import com.group17.inventoryease.ums.repositories.CompanyRepository;
+
 @Service
 public class SchemaService {
     @Autowired
