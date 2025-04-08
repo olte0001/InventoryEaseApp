@@ -25,6 +25,7 @@ public class CurrentLocationActivity extends AppCompatActivity {
         // Mock locations
         String[] locations = {"Location A", "Location B"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Added for better dropdown appearance
         dropdownList.setAdapter(adapter);
 
         // Proceed to Dashboard

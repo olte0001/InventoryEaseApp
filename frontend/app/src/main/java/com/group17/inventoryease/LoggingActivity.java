@@ -9,7 +9,7 @@ import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
-import com.group17.inventoryease.network.CurrentLocationActivity;
+import com.group17.inventoryease.CurrentLocationActivity;
 import com.group17.inventoryease.network.TokenManager;
 
 import retrofit2.Call;
