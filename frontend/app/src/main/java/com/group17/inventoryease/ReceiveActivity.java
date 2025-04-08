@@ -1,10 +1,14 @@
 package com.group17.inventoryease;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -27,22 +31,43 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ReceiveActivity extends AppCompatActivity {
+    private LinearLayout productLayout;
+    private LinearLayout supllierLayout;
+    private LinearLayout quantityLayout;
+    private LinearLayout confirmLayout;
     private Spinner productSpinner;
     private Spinner supplierSpinner;
+    private EditText quantityEdit;
+    private Button continueButton;
+    private Button submitButton;
+    private Button cancelButton;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
         // TODO: declare all views
+        productLayout = findViewById(R.id.receiveProductLayout);
         productSpinner = findViewById(R.id.product_spinner);
+        supllierLayout = findViewById(R.id.receiveSupplierLayout);
         supplierSpinner = findViewById(R.id.supplier_spinner);
+        quantityLayout = findViewById(R.id.receiveQuantityLayout);
+        quantityEdit = findViewById(R.id.quantityEdit);
+        confirmLayout = findViewById(R.id.confirmLayout);
+        continueButton = findViewById(R.id.confirmContinueButton);
+        submitButton = findViewById(R.id.confirmConfirmButton);
+        cancelButton = findViewById(R.id.ConfirmCancelButton);
+
+
 
         // TODO: Set initial visibility (only product spinner is visible when the activity loads)
-        supplierSpinner.setVisibility(View.GONE);
+        supllierLayout.setVisibility(View.GONE);
+        quantityLayout.setVisibility(View.GONE);
+        confirmLayout.setVisibility(View.GONE);
 
-        getPreApprovedProducts();
+        //getPreApprovedProducts();
         /* Here is the flow:
         *  If getPreApprovedProducts() is successful in fetching all of the products, it calls populateProductSpinner(products) to populate the drop down list for the products.
         * */

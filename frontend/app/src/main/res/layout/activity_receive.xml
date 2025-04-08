@@ -6,47 +6,69 @@
 
     <!-- TODO: write views (to enter quantity and to enter expiration date)
     -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/productPropmt"
-        android:textSize="18sp"
-        android:text="@string/Product"/>
+        android:id="@+id/receiveProductLayout"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/productPropmt"
+            android:textSize="18sp"
+            android:text="@string/Product"/>
 
-    <Spinner
-        android:id="@+id/product_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/productPropmt"/>
+        <Spinner
+            android:id="@+id/product_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/supplierPropmt"
-        android:textSize="18sp"
-        android:text="@string/Supplier"
-        android:layout_below="@id/product_spinner"/>
+        android:id="@+id/receiveSupplierLayout"
+        android:orientation="vertical"
+        android:layout_below="@+id/receiveProductLayout">
 
-    <Spinner
-        android:id="@+id/supplier_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/supplierPropmt" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/quantityPrompt"
-        android:text="@string/Quantity"
-        android:textSize="18sp"
-        android:layout_below="@+id/supplier_spinner"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/supplierPropmt"
+            android:textSize="18sp"
+            android:text="@string/Supplier"/>
 
-    <EditText
+        <Spinner
+            android:id="@+id/supplier_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/quantityEdit"
-        android:background="@color/white"
-        android:layout_below="@id/quantityPrompt"
-        android:textSize="18sp"/>
+        android:id="@+id/receiveQuantityLayout"
+        android:orientation="vertical"
+        android:layout_below="@id/receiveSupplierLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantityPrompt"
+            android:text="@string/Quantity"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantityEdit"
+            android:background="@color/white"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

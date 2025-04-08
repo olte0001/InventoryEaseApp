@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 //company EditText
                 EditText companyEntry = findViewById(R.id.companyNameEntry);
                 String companyId = companyEntry.getText().toString();
-                validateCompanyId(companyId);
+                //validateCompanyId(companyId);
+                skip("Company 1");
 
             }
         });
