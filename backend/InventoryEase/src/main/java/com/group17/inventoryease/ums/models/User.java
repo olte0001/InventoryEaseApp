@@ -1,8 +1,5 @@
 package com.group17.inventoryease.ums.models;
 
-import com.group17.inventoryease.ums.models.Location;
-import com.group17.inventoryease.ums.models.Role;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
