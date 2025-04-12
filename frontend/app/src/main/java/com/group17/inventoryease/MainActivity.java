@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Display message of invalid company identifier
                     Log.e("MainActivity", "Error: Company name not found. Response Code: " + response.code());
+                    // FIXME: when you input a wrong identifier, the error message does not show on the screen.
                     ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
                     ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found");
                 }

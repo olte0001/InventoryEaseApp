@@ -37,6 +37,6 @@ public class AuthenticationService {
                 )
         );
 
-        return userRepository.findByUsername(input.getUsername());
+        return userRepository.findByUsername(Long.valueOf(input.getUsername()));
     }
 }
