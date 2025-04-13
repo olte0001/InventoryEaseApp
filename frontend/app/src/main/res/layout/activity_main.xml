@@ -22,21 +22,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/companyIdPrompt"
-        android:textSize="18sp"
-        android:layout_alignLeft="@id/companyNameEntry"
-        android:layout_above="@id/companyNameEntry"
+        android:text="@string/companyIdPrompt"
+        android:textSize="14sp"
+        android:layout_alignLeft="@id/companyIdEntry"
+        android:layout_above="@id/companyIdEntry"
         ></TextView>
 
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/companyNameEntry"
-        android:text="@string/companyIdPrompt"
-        android:textSize="18sp"
+        android:id="@+id/companyIdEntry"
+        android:maxLength="6"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:background="@color/white">
-
     </EditText>
 
     <Button
@@ -44,8 +43,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/companySubmit"
         android:text="@string/submit"
-        android:layout_below="@id/companyNameEntry"
-        android:layout_alignLeft="@id/companyNameEntry"
+        android:layout_below="@id/companyIdEntry"
+        android:layout_alignLeft="@id/companyIdEntry"
         >
 
     </Button>

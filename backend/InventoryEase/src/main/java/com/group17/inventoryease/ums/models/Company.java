@@ -27,6 +27,6 @@ public class Company {
     @Column(name = "company_name")
     private String companyName;
 
-    @Column(name = "company_schema")
+    @Column(name = "schema_name")
     private String companySchema;
 }

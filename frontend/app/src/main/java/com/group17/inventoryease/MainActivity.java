@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -31,18 +32,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Use the validateCompanyId() method down below
-
-        //Submit company name button
+        // Button to submit the inputted company identifier
         Button submitButton = findViewById(R.id.companySubmit);
         submitButton.setOnClickListener(new View.OnClickListener() {
+            // Fetch the value from the EditText and send it to backend for validation
             @Override
             public void onClick(View view) {
-                //company EditText
-                EditText companyEntry = findViewById(R.id.companyNameEntry);
-                String companyname = companyEntry.getText().toString();
-                validateCompanyId(Integer.valueOf(companyname));
-                //skip(companyname);
+                EditText companyEntry = findViewById(R.id.companyIdEntry);
+                String companyId = companyEntry.getText().toString();
+                validateCompanyId(Math.toIntExact(Long.parseLong(companyId)));
             }
         });
 
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Call<CompanyIdResponse> call = apiService.validateCompanyId(request);
         call.enqueue(new Callback<CompanyIdResponse>() {
             @Override
-            public void onResponse(Call<CompanyIdResponse> call, Response<CompanyIdResponse> response) {
+            public void onResponse(@NonNull Call<CompanyIdResponse> call, @NonNull Response<CompanyIdResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     Log.e("MainActivity", "Response Code: " + response.code());
                     // Store the company name and move on to the logging page
@@ -74,26 +72,18 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Display message of invalid company identifier
                     Log.e("MainActivity", "Error: Company name not found. Response Code: " + response.code());
-                    // FIXME: when you input a wrong identifier, the error message does not show on the screen.
-                    ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
-                    ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found");
+                    ((EditText) findViewById(R.id.companyIdEntry)).getText().clear();
+                    ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found"); // FIXME: when you input a wrong identifier, the error message does not show on the screen.
                 }
             }
 
             @Override
-            public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<CompanyIdResponse> call, @NonNull Throwable t) {
                 //  Display message that error on our side and to retry
-                ((EditText) findViewById(R.id.companyNameEntry)).getText().clear();
-                ((TextView) findViewById(R.id.companyErrorText)).setText("Error: "+t);
+                ((EditText) findViewById(R.id.companyIdEntry)).getText().clear();
+                ((TextView) findViewById(R.id.companyErrorText)).setText("An error as occurred on our side.");
                 Log.e("MainActivity", "Validate Company Error", t);
             }
         });
-    }
-
-    private void skip(String companyName){
-        Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
-        intent.putExtra("companyName", companyName);
-        startActivity(intent);
-        finish();
     }
 }
