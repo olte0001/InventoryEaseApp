@@ -47,7 +47,7 @@ public class TenantConnectionProvider implements MultiTenantConnectionProvider<S
 
     @Override
     public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
-        connection.createStatement().execute("SET search_path TO PUBLIC");
+        connection.createStatement().execute("SET search_path TO public");
         connection.close();
     }
 
