@@ -44,6 +44,9 @@ tied to inventory items.
 - **ZXing (Barcode Library)**
 - **Android SDK**
 - **PrintHelper API**
+## Setting up Spring Boot (with Docker Desktop in IntelliJ IDEA)
+- **Build Project**: In the IntelliJ IDEA, enter "./gradlew build -t test"
+- **Build Docker container**: In the IntelliJ IDEA, enter "docker-compose up --build"
 ## Team Members
 - Qirong Chen (041072747)
 - Iulia Oltean (041117567)

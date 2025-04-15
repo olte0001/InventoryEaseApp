@@ -28,8 +28,12 @@ public class TenantInterceptor implements HandlerInterceptor {
             throws Exception {
 
         String authToken = request.getHeader(this.tokenHeader);
-        String tenantId = jwtService.extractSchemaName(authToken);
-        TenantContext.setCurrentTenant(tenantId);
+        if (authToken == null || authToken.isEmpty()) {
+            TenantContext.setCurrentTenant("public");
+        } else {
+            String tenantId = jwtService.extractSchemaName(authToken);
+            TenantContext.setCurrentTenant(tenantId);
+        }
 
         return true;
     }

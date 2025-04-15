@@ -31,7 +31,6 @@ public class ReceiveActivity extends AppCompatActivity {
     private EditText qtyEditText;
     private EditText expEditText;
     private Button confirmButton;
-    private Button cancelButton;
     private Button continueButton;
 
     private List<ProductDTO> products;
@@ -49,7 +48,7 @@ public class ReceiveActivity extends AppCompatActivity {
         expEditText = findViewById(R.id.expirationDateEditText);
         continueButton = findViewById(R.id.confirmContinueButton);
         confirmButton = findViewById(R.id.confirmConfirmButton);
-        cancelButton = findViewById(R.id.ConfirmCancelButton);
+        Button cancelButton = findViewById(R.id.ConfirmCancelButton);
 
         // Set initial visibility
         productSpinner.setVisibility(View.VISIBLE);
@@ -129,7 +128,6 @@ public class ReceiveActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                // TODO: see if there needs to be code in here
             }
         });
     }
@@ -152,7 +150,6 @@ public class ReceiveActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                // TODO: see if there needs to be code in here
             }
         });
     }
