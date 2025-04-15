@@ -2,6 +2,7 @@ package com.group17.inventoryease.ums.services;
 
 // All code in this class has been taken from https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac
 
+import com.group17.inventoryease.ums.context.TenantContext;
 import com.group17.inventoryease.ums.models.User;
 import com.group17.inventoryease.ums.models.Location;
 
@@ -41,12 +42,14 @@ public class JwtService {
         return extractClaim(token, claims -> (Map<String, String>) claims.get("locationIdToName"));
     }
 
+    public String extractSchemaName(String token) {return extractClaim(token, claims -> claims.get("schemaName").toString());}
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    // This method will take the user details and add the user role in a hash map.
+    // This method will take the user details and add the user role, the user's authorized locations and the schema name in a hash map.
     // It passes them as arguments to the next "generateToken" method, which will return the token string which is then returned by this method.
     public String generateToken(UserDetails userDetails) {
         // Source: https://stackoverflow.com/questions/63334575/role-based-authorization-using-jwt-spring-security
@@ -63,9 +66,12 @@ public class JwtService {
                         Location::getLocationName
                 ));
 
+        String schemaName = TenantContext.getCurrentTenant();
+
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("role", role);
         extraClaims.put("locationIdToName", locationIdToName);
+        extraClaims.put("schemaName", schemaName);
 
         return generateToken(extraClaims, userDetails);
     }

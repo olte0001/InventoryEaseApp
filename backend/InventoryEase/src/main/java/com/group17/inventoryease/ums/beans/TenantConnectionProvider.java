@@ -4,33 +4,29 @@ package com.group17.inventoryease.ums.beans;
  * The TenantConnectionProvider class manages the connection with the database to set the current schema dynamically.
  *
  * Source: https://spring.io/blog/2022/07/31/how-to-integrate-hibernates-multitenant-feature-with-spring-data-jpa-in-a-spring-boot-application
+ *         https://dzone.com/articles/spring-boot-hibernate-multitenancy-implementation
  * */
 
-import org.hibernate.cfg.AvailableSettings;
+import com.group17.inventoryease.ums.context.TenantContext;
+import org.hibernate.HibernateException;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Map;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.UnknownKeyFor;
-import org.checkerframework.checker.initialization.qual.Initialized;
 
 @Component
-public class TenantConnectionProvider implements MultiTenantConnectionProvider<String>, HibernatePropertiesCustomizer {
+public class TenantConnectionProvider implements MultiTenantConnectionProvider<String> {
 
     @Autowired
     private DataSource dataSource;
 
     @Override
     public Connection getAnyConnection() throws SQLException {
-        return getConnection("PUBLIC");
+        return dataSource.getConnection();
     }
 
     @Override
@@ -40,20 +36,36 @@ public class TenantConnectionProvider implements MultiTenantConnectionProvider<S
 
     @Override
     public Connection getConnection(String tenantIdentifier) throws SQLException {
-        Connection connection = dataSource.getConnection();
-        connection.createStatement().execute("SET search_path TO " + tenantIdentifier);
+        tenantIdentifier = TenantContext.getCurrentTenant();
+        final Connection connection = getAnyConnection();
+        try {
+            if (tenantIdentifier != null) {
+                connection.createStatement().execute("SET search_path TO " + tenantIdentifier);
+            } else {
+                connection.createStatement().execute("SET search_path TO public");
+            }
+        }
+        catch ( SQLException e ) {
+            throw new HibernateException(
+                    "Problem setting schema to " + tenantIdentifier,
+                    e
+            );
+        }
         return connection;
     }
 
     @Override
     public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
-        connection.createStatement().execute("SET search_path TO public");
+        try {
+            connection.createStatement().execute( "SET search_path TO public");
+        }
+        catch ( SQLException e ) {
+            throw new HibernateException(
+                    "Problem setting schema to " + tenantIdentifier,
+                    e
+            );
+        }
         connection.close();
-    }
-
-    @Override
-    public void customize(Map<String, Object> hibernateProperties) {
-        hibernateProperties.put(AvailableSettings.MULTI_TENANT_CONNECTION_PROVIDER, this);
     }
 
     @Override

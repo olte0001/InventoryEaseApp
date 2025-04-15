@@ -7,6 +7,7 @@ package com.group17.inventoryease.ums.controllers;
 *         https://www.baeldung.com/spring-response-entity
 * */
 
+import com.group17.inventoryease.ums.context.TenantContext;
 import com.group17.inventoryease.ums.services.SchemaService;
 import com.group17.inventoryease.ums.beans.TenantIdentifierResolver;
 import com.group17.inventoryease.ums.services.AuthenticationService;
@@ -51,7 +52,7 @@ public class UmsController {
         return schemaService.getSchemaByCompanyId(Long.valueOf(request.getCompanyId()))
                 // If a schema is found, set it has the current one and respond to the client with the company name (200 OK).
                 .map(schema -> {
-                    tenantIdentifierResolver.setCurrentTenant(schema);
+                    TenantContext.setCurrentTenant(schema);
                     String companyName = schemaService.getCompanyNameByCompanyId(Long.valueOf(request.getCompanyId()))
                             .orElse("");
                     log.debug("Company found: {}", companyName);
