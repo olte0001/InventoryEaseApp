@@ -52,22 +52,22 @@ public class UmsController {
         return schemaService.getSchemaByCompanyId(Long.valueOf(request.getCompanyId()))
                 // If a schema is found, set it has the current one and respond to the client with the company name (200 OK).
                 .map(schema -> {
-                    TenantContext.setCurrentTenant(schema);
                     String companyName = schemaService.getCompanyNameByCompanyId(Long.valueOf(request.getCompanyId()))
                             .orElse("");
                     log.debug("Company found: {}", companyName);
-                    return ResponseEntity.ok(new CompanyIdResponse(true, companyName));
+                    return ResponseEntity.ok(new CompanyIdResponse(true, companyName, schema));
                 })
                 // If a schema is not found, respond to the client with an error HTTP status (404 NOT FOUND).
                 .orElseGet(() -> {
                         log.warn("Company ID not found: {}", request.getCompanyId());
-                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CompanyIdResponse(false, ""));
+                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CompanyIdResponse(false, "", ""));
                 });
     }
 
     // Source: https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request){
+        TenantContext.setCurrentTenant(request.getSchemaName());
         return authenticationService.authenticate(request)
                 .map(authenticatedUser -> {
                     String jwtToken = jwtService.generateToken(authenticatedUser);

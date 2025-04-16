@@ -20,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoggingActivity extends AppCompatActivity {
+    private String schemaName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -31,6 +32,7 @@ public class LoggingActivity extends AppCompatActivity {
         if(extras != null){
             String companyName = extras.getString("companyName");
             ((TextView) findViewById(R.id.companyNameText)).setText(companyName);
+            schemaName = extras.getString("schemaName");
         }
 
         // when submit button pressed, take user credentials and .loginUser() which is down below
@@ -48,7 +50,7 @@ public class LoggingActivity extends AppCompatActivity {
 
     private void loginUser(String username, String pwd) {
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
-        LoginRequest request = new LoginRequest(username, pwd);
+        LoginRequest request = new LoginRequest(username, pwd, schemaName);
 
         // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
         Call<LoginResponse> call = apiService.login(request);

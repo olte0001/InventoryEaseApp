@@ -12,8 +12,6 @@ import com.group17.inventoryease.ums.context.TenantContext;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 @Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver {
 

@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     // Store the company name and move on to the logging page
                     Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
                     intent.putExtra("companyName", response.body().getCompanyName());
+                    intent.putExtra("schemaName", response.body().getSchemaName());
                     startActivity(intent);
                     finish();
                 } else {
