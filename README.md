@@ -44,9 +44,20 @@ tied to inventory items.
 - **ZXing (Barcode Library)**
 - **Android SDK**
 - **PrintHelper API**
-## Setting up Spring Boot (with Docker Desktop in IntelliJ IDEA)
-- **Build Project**: In the IntelliJ IDEA, enter "./gradlew build -t test"
-- **Build Docker container**: In the IntelliJ IDEA, enter "docker-compose up --build"
+## Setting up Spring Boot and Docker (with Windows Subsystem for Linux, Docker Desktop, IntelliJ IDEA and pgAdmin Desktop already installed)
+- **Open Project**: In IntelliJ IDEA, open the "InventoryEase" folder: InventoryEaseApp > backend > InventoryEase
+- **Set PostgreSQL Database**: In the docker-compose.yml, change the credentials of 'POSTGRES_DB', 'POSTGRES_PASSWORD' and 'POSTGRES_USER' to your corresponding database, user and password.
+- **Build Project**: In the IntelliJ IDEA terminal, enter "./gradlew build -t test"
+- **Build and Run Docker container**: In the IntelliJ IDEA terminal, enter "docker-compose up --build"
+- **Connect pgAdmin with Dockerized PostgreSQL**:
+    - In pgAdmin, right-click Servers > Create > Server and name it.
+    - In the Connection tab, insert "127.0.0.1" for the address as were using WSL, your database for maintenance database, your database username for the username and your password for password. Make sure to toggle on "Save password?". Click "Save".
+- **Restore PostgreSQL database**: 
+    - In bash terminal, navigate to the "InventoryEaseApp" folder
+    - In bash terminal, enter the following command to copy the included backup.sql into the running postgres container "docker cp backup.sql inventoryease-postgres-1:/backup.sql"
+    - In the bash terminal, enter the following command to open a terminal session in the running postgres container "docker exec -it inventoryease-postgres-1 bash"
+    - In the bash terminal, enter the following command to restore the data "psql -U your_user -d your_db -f /backup.sql". Don't forget to replace "your_user" and "your_db" with your own credentials.
+
 ## Team Members
 - Qirong Chen (041072747)
 - Iulia Oltean (041117567)

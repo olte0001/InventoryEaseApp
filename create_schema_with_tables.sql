@@ -1,21 +1,22 @@
-SET search_path TO companyX;
+-- Replace "schema" by the name of the schema you are creating. 
+
+CREATE SCHEMA schema;
+
+SET search_path TO schema;
 
 CREATE TABLE roles (
     role_id SERIAL PRIMARY KEY,
     role_name VARCHAR(45)
 );
 
-INSERT INTO companyX.roles (role_name)
-VALUES (HANDLER);
-
-INSERT INTO companyX.roles (role_name)
-VALUES (MANAGER);
+INSERT INTO roles (role_id, role_name) VALUES (1, 'MANAGER');
+INSERT INTO roles (role_id, role_name) VALUES (2, 'HANDLER');
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(45),
     last_name VARCHAR(45),
-    password VARCHAR(255),
+    password VARCHAR(100),
     role_id INT REFERENCES ROLES(role_id)
 );
 

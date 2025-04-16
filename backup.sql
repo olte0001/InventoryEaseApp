@@ -5,8 +5,6 @@
 -- Dumped from database version 17.4
 -- Dumped by pg_dump version 17.4
 
--- Started on 2025-04-03 05:00:43
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -20,7 +18,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 6 (class 2615 OID 16389)
 -- Name: company1; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -30,7 +27,6 @@ CREATE SCHEMA company1;
 ALTER SCHEMA company1 OWNER TO postgres;
 
 --
--- TOC entry 7 (class 2615 OID 16390)
 -- Name: company2; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -44,7 +40,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 240 (class 1259 OID 16573)
 -- Name: alert; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -60,7 +55,6 @@ CREATE TABLE company1.alert (
 ALTER TABLE company1.alert OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 16572)
 -- Name: alert_alert_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -76,8 +70,6 @@ CREATE SEQUENCE company1.alert_alert_id_seq
 ALTER SEQUENCE company1.alert_alert_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5145 (class 0 OID 0)
--- Dependencies: 239
 -- Name: alert_alert_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -85,7 +77,6 @@ ALTER SEQUENCE company1.alert_alert_id_seq OWNED BY company1.alert.alert_id;
 
 
 --
--- TOC entry 236 (class 1259 OID 16530)
 -- Name: consumeditem; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -102,7 +93,6 @@ CREATE TABLE company1.consumeditem (
 ALTER TABLE company1.consumeditem OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 16510)
 -- Name: item; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -120,7 +110,6 @@ CREATE TABLE company1.item (
 ALTER TABLE company1.item OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 16448)
 -- Name: location; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -133,7 +122,6 @@ CREATE TABLE company1.location (
 ALTER TABLE company1.location OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 16447)
 -- Name: location_location_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -149,8 +137,6 @@ CREATE SEQUENCE company1.location_location_id_seq
 ALTER SEQUENCE company1.location_location_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5146 (class 0 OID 0)
--- Dependencies: 225
 -- Name: location_location_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -158,7 +144,6 @@ ALTER SEQUENCE company1.location_location_id_seq OWNED BY company1.location.loca
 
 
 --
--- TOC entry 229 (class 1259 OID 16470)
 -- Name: locator; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -173,7 +158,6 @@ CREATE TABLE company1.locator (
 ALTER TABLE company1.locator OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 16469)
 -- Name: locator_locator_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -189,8 +173,6 @@ CREATE SEQUENCE company1.locator_locator_id_seq
 ALTER SEQUENCE company1.locator_locator_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5147 (class 0 OID 0)
--- Dependencies: 228
 -- Name: locator_locator_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -198,7 +180,6 @@ ALTER SEQUENCE company1.locator_locator_id_seq OWNED BY company1.locator.locator
 
 
 --
--- TOC entry 233 (class 1259 OID 16489)
 -- Name: product; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -214,7 +195,6 @@ CREATE TABLE company1.product (
 ALTER TABLE company1.product OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 16488)
 -- Name: product_product_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -230,8 +210,6 @@ CREATE SEQUENCE company1.product_product_id_seq
 ALTER SEQUENCE company1.product_product_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5148 (class 0 OID 0)
--- Dependencies: 232
 -- Name: product_product_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -239,7 +217,6 @@ ALTER SEQUENCE company1.product_product_id_seq OWNED BY company1.product.product
 
 
 --
--- TOC entry 234 (class 1259 OID 16495)
 -- Name: product_supplier; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -252,7 +229,6 @@ CREATE TABLE company1.product_supplier (
 ALTER TABLE company1.product_supplier OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16429)
 -- Name: roles; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -265,7 +241,6 @@ CREATE TABLE company1.roles (
 ALTER TABLE company1.roles OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 16428)
 -- Name: roles_role_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -281,8 +256,6 @@ CREATE SEQUENCE company1.roles_role_id_seq
 ALTER SEQUENCE company1.roles_role_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5149 (class 0 OID 0)
--- Dependencies: 221
 -- Name: roles_role_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -290,7 +263,6 @@ ALTER SEQUENCE company1.roles_role_id_seq OWNED BY company1.roles.role_id;
 
 
 --
--- TOC entry 231 (class 1259 OID 16482)
 -- Name: supplier; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -305,7 +277,6 @@ CREATE TABLE company1.supplier (
 ALTER TABLE company1.supplier OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 16481)
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -321,8 +292,6 @@ CREATE SEQUENCE company1.supplier_supplier_id_seq
 ALTER SEQUENCE company1.supplier_supplier_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5150 (class 0 OID 0)
--- Dependencies: 230
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -330,7 +299,6 @@ ALTER SEQUENCE company1.supplier_supplier_id_seq OWNED BY company1.supplier.supp
 
 
 --
--- TOC entry 238 (class 1259 OID 16551)
 -- Name: transaction; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -350,7 +318,6 @@ CREATE TABLE company1.transaction (
 ALTER TABLE company1.transaction OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 16550)
 -- Name: transaction_trans_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -366,8 +333,6 @@ CREATE SEQUENCE company1.transaction_trans_id_seq
 ALTER SEQUENCE company1.transaction_trans_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5151 (class 0 OID 0)
--- Dependencies: 237
 -- Name: transaction_trans_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -375,23 +340,21 @@ ALTER SEQUENCE company1.transaction_trans_id_seq OWNED BY company1.transaction.t
 
 
 --
--- TOC entry 224 (class 1259 OID 16436)
 -- Name: users; Type: TABLE; Schema: company1; Owner: postgres
 --
 
 CREATE TABLE company1.users (
     user_id integer NOT NULL,
+    role_id integer,
     first_name character varying(45),
     last_name character varying(45),
-    password character varying(255),
-    role_id integer
+    password character varying(100)
 );
 
 
 ALTER TABLE company1.users OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 16454)
 -- Name: users_location; Type: TABLE; Schema: company1; Owner: postgres
 --
 
@@ -404,7 +367,6 @@ CREATE TABLE company1.users_location (
 ALTER TABLE company1.users_location OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 16435)
 -- Name: users_user_id_seq; Type: SEQUENCE; Schema: company1; Owner: postgres
 --
 
@@ -420,8 +382,6 @@ CREATE SEQUENCE company1.users_user_id_seq
 ALTER SEQUENCE company1.users_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5152 (class 0 OID 0)
--- Dependencies: 223
 -- Name: users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: company1; Owner: postgres
 --
 
@@ -429,7 +389,6 @@ ALTER SEQUENCE company1.users_user_id_seq OWNED BY company1.users.user_id;
 
 
 --
--- TOC entry 260 (class 1259 OID 16725)
 -- Name: alert; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -445,7 +404,6 @@ CREATE TABLE company2.alert (
 ALTER TABLE company2.alert OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 16724)
 -- Name: alert_alert_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -461,8 +419,6 @@ CREATE SEQUENCE company2.alert_alert_id_seq
 ALTER SEQUENCE company2.alert_alert_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5153 (class 0 OID 0)
--- Dependencies: 259
 -- Name: alert_alert_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -470,7 +426,6 @@ ALTER SEQUENCE company2.alert_alert_id_seq OWNED BY company2.alert.alert_id;
 
 
 --
--- TOC entry 256 (class 1259 OID 16682)
 -- Name: consumeditem; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -487,7 +442,6 @@ CREATE TABLE company2.consumeditem (
 ALTER TABLE company2.consumeditem OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 16662)
 -- Name: item; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -505,7 +459,6 @@ CREATE TABLE company2.item (
 ALTER TABLE company2.item OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 16600)
 -- Name: location; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -518,7 +471,6 @@ CREATE TABLE company2.location (
 ALTER TABLE company2.location OWNER TO postgres;
 
 --
--- TOC entry 245 (class 1259 OID 16599)
 -- Name: location_location_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -534,8 +486,6 @@ CREATE SEQUENCE company2.location_location_id_seq
 ALTER SEQUENCE company2.location_location_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5154 (class 0 OID 0)
--- Dependencies: 245
 -- Name: location_location_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -543,7 +493,6 @@ ALTER SEQUENCE company2.location_location_id_seq OWNED BY company2.location.loca
 
 
 --
--- TOC entry 249 (class 1259 OID 16622)
 -- Name: locator; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -558,7 +507,6 @@ CREATE TABLE company2.locator (
 ALTER TABLE company2.locator OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 16621)
 -- Name: locator_locator_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -574,8 +522,6 @@ CREATE SEQUENCE company2.locator_locator_id_seq
 ALTER SEQUENCE company2.locator_locator_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5155 (class 0 OID 0)
--- Dependencies: 248
 -- Name: locator_locator_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -583,7 +529,6 @@ ALTER SEQUENCE company2.locator_locator_id_seq OWNED BY company2.locator.locator
 
 
 --
--- TOC entry 253 (class 1259 OID 16641)
 -- Name: product; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -599,7 +544,6 @@ CREATE TABLE company2.product (
 ALTER TABLE company2.product OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 16640)
 -- Name: product_product_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -615,8 +559,6 @@ CREATE SEQUENCE company2.product_product_id_seq
 ALTER SEQUENCE company2.product_product_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5156 (class 0 OID 0)
--- Dependencies: 252
 -- Name: product_product_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -624,7 +566,6 @@ ALTER SEQUENCE company2.product_product_id_seq OWNED BY company2.product.product
 
 
 --
--- TOC entry 254 (class 1259 OID 16647)
 -- Name: product_supplier; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -637,7 +578,6 @@ CREATE TABLE company2.product_supplier (
 ALTER TABLE company2.product_supplier OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 16581)
 -- Name: roles; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -650,7 +590,6 @@ CREATE TABLE company2.roles (
 ALTER TABLE company2.roles OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1259 OID 16580)
 -- Name: roles_role_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -666,8 +605,6 @@ CREATE SEQUENCE company2.roles_role_id_seq
 ALTER SEQUENCE company2.roles_role_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5157 (class 0 OID 0)
--- Dependencies: 241
 -- Name: roles_role_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -675,7 +612,6 @@ ALTER SEQUENCE company2.roles_role_id_seq OWNED BY company2.roles.role_id;
 
 
 --
--- TOC entry 251 (class 1259 OID 16634)
 -- Name: supplier; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -690,7 +626,6 @@ CREATE TABLE company2.supplier (
 ALTER TABLE company2.supplier OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 16633)
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -706,8 +641,6 @@ CREATE SEQUENCE company2.supplier_supplier_id_seq
 ALTER SEQUENCE company2.supplier_supplier_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5158 (class 0 OID 0)
--- Dependencies: 250
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -715,7 +648,6 @@ ALTER SEQUENCE company2.supplier_supplier_id_seq OWNED BY company2.supplier.supp
 
 
 --
--- TOC entry 258 (class 1259 OID 16703)
 -- Name: transaction; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -735,7 +667,6 @@ CREATE TABLE company2.transaction (
 ALTER TABLE company2.transaction OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 16702)
 -- Name: transaction_trans_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -751,8 +682,6 @@ CREATE SEQUENCE company2.transaction_trans_id_seq
 ALTER SEQUENCE company2.transaction_trans_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5159 (class 0 OID 0)
--- Dependencies: 257
 -- Name: transaction_trans_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -760,7 +689,6 @@ ALTER SEQUENCE company2.transaction_trans_id_seq OWNED BY company2.transaction.t
 
 
 --
--- TOC entry 244 (class 1259 OID 16588)
 -- Name: users; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -768,7 +696,7 @@ CREATE TABLE company2.users (
     user_id integer NOT NULL,
     first_name character varying(45),
     last_name character varying(45),
-    password character varying(255),
+    password character varying(100),
     role_id integer
 );
 
@@ -776,7 +704,6 @@ CREATE TABLE company2.users (
 ALTER TABLE company2.users OWNER TO postgres;
 
 --
--- TOC entry 247 (class 1259 OID 16606)
 -- Name: users_location; Type: TABLE; Schema: company2; Owner: postgres
 --
 
@@ -789,7 +716,6 @@ CREATE TABLE company2.users_location (
 ALTER TABLE company2.users_location OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1259 OID 16587)
 -- Name: users_user_id_seq; Type: SEQUENCE; Schema: company2; Owner: postgres
 --
 
@@ -805,8 +731,6 @@ CREATE SEQUENCE company2.users_user_id_seq
 ALTER SEQUENCE company2.users_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5160 (class 0 OID 0)
--- Dependencies: 243
 -- Name: users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: company2; Owner: postgres
 --
 
@@ -814,13 +738,12 @@ ALTER SEQUENCE company2.users_user_id_seq OWNED BY company2.users.user_id;
 
 
 --
--- TOC entry 220 (class 1259 OID 16392)
 -- Name: company; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.company (
-    company_id integer NOT NULL,
-    company_name text NOT NULL,
+    company_id bigint NOT NULL,
+    company_name character varying(255) NOT NULL,
     schema_name text NOT NULL
 );
 
@@ -828,7 +751,6 @@ CREATE TABLE public.company (
 ALTER TABLE public.company OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 16391)
 -- Name: COMPANY_company_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -844,8 +766,6 @@ CREATE SEQUENCE public."COMPANY_company_id_seq"
 ALTER SEQUENCE public."COMPANY_company_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 5161 (class 0 OID 0)
--- Dependencies: 219
 -- Name: COMPANY_company_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -853,7 +773,6 @@ ALTER SEQUENCE public."COMPANY_company_id_seq" OWNED BY public.company.company_i
 
 
 --
--- TOC entry 4864 (class 2604 OID 16576)
 -- Name: alert alert_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -861,7 +780,6 @@ ALTER TABLE ONLY company1.alert ALTER COLUMN alert_id SET DEFAULT nextval('compa
 
 
 --
--- TOC entry 4859 (class 2604 OID 16451)
 -- Name: location location_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -869,7 +787,6 @@ ALTER TABLE ONLY company1.location ALTER COLUMN location_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4860 (class 2604 OID 16473)
 -- Name: locator locator_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -877,7 +794,6 @@ ALTER TABLE ONLY company1.locator ALTER COLUMN locator_id SET DEFAULT nextval('c
 
 
 --
--- TOC entry 4862 (class 2604 OID 16492)
 -- Name: product product_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -885,7 +801,6 @@ ALTER TABLE ONLY company1.product ALTER COLUMN product_id SET DEFAULT nextval('c
 
 
 --
--- TOC entry 4857 (class 2604 OID 16432)
 -- Name: roles role_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -893,7 +808,6 @@ ALTER TABLE ONLY company1.roles ALTER COLUMN role_id SET DEFAULT nextval('compan
 
 
 --
--- TOC entry 4861 (class 2604 OID 16485)
 -- Name: supplier supplier_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -901,7 +815,6 @@ ALTER TABLE ONLY company1.supplier ALTER COLUMN supplier_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4863 (class 2604 OID 16554)
 -- Name: transaction trans_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -909,7 +822,6 @@ ALTER TABLE ONLY company1.transaction ALTER COLUMN trans_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4858 (class 2604 OID 16439)
 -- Name: users user_id; Type: DEFAULT; Schema: company1; Owner: postgres
 --
 
@@ -917,7 +829,6 @@ ALTER TABLE ONLY company1.users ALTER COLUMN user_id SET DEFAULT nextval('compan
 
 
 --
--- TOC entry 4872 (class 2604 OID 16728)
 -- Name: alert alert_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -925,7 +836,6 @@ ALTER TABLE ONLY company2.alert ALTER COLUMN alert_id SET DEFAULT nextval('compa
 
 
 --
--- TOC entry 4867 (class 2604 OID 16603)
 -- Name: location location_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -933,7 +843,6 @@ ALTER TABLE ONLY company2.location ALTER COLUMN location_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4868 (class 2604 OID 16625)
 -- Name: locator locator_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -941,7 +850,6 @@ ALTER TABLE ONLY company2.locator ALTER COLUMN locator_id SET DEFAULT nextval('c
 
 
 --
--- TOC entry 4870 (class 2604 OID 16644)
 -- Name: product product_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -949,7 +857,6 @@ ALTER TABLE ONLY company2.product ALTER COLUMN product_id SET DEFAULT nextval('c
 
 
 --
--- TOC entry 4865 (class 2604 OID 16584)
 -- Name: roles role_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -957,7 +864,6 @@ ALTER TABLE ONLY company2.roles ALTER COLUMN role_id SET DEFAULT nextval('compan
 
 
 --
--- TOC entry 4869 (class 2604 OID 16637)
 -- Name: supplier supplier_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -965,7 +871,6 @@ ALTER TABLE ONLY company2.supplier ALTER COLUMN supplier_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4871 (class 2604 OID 16706)
 -- Name: transaction trans_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -973,7 +878,6 @@ ALTER TABLE ONLY company2.transaction ALTER COLUMN trans_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4866 (class 2604 OID 16591)
 -- Name: users user_id; Type: DEFAULT; Schema: company2; Owner: postgres
 --
 
@@ -981,7 +885,6 @@ ALTER TABLE ONLY company2.users ALTER COLUMN user_id SET DEFAULT nextval('compan
 
 
 --
--- TOC entry 4856 (class 2604 OID 16395)
 -- Name: company company_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -989,131 +892,131 @@ ALTER TABLE ONLY public.company ALTER COLUMN company_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 5119 (class 0 OID 16573)
--- Dependencies: 240
 -- Data for Name: alert; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.alert (alert_id, item_sn, has_expired, low_stock, alert_date) FROM stdin;
+1	ITEM001	f	t	2025-04-15 15:34:15.257454
 \.
 
 
 --
--- TOC entry 5115 (class 0 OID 16530)
--- Dependencies: 236
 -- Data for Name: consumeditem; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.consumeditem (consumed_item_id, received_date, expiration_date, locator_id, supplier_id, product_id) FROM stdin;
+CITEM001	2024-03-20 00:00:00	2024-05-21 00:00:00	2	2	2
+CITEM002	2024-03-17 00:00:00	2024-06-03 00:00:00	2	2	2
 \.
 
 
 --
--- TOC entry 5114 (class 0 OID 16510)
--- Dependencies: 235
 -- Data for Name: item; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.item (item_id, item_quantity, received_date, expiration_date, locator_id, supplier_id, product_id) FROM stdin;
+ITEM001	41	2024-03-07 00:00:00	\N	1	1	2
+ITEM002	23	2024-03-25 00:00:00	2024-05-28 00:00:00	1	2	1
+ITEM003	83	2024-03-12 00:00:00	2024-06-25 00:00:00	1	1	1
 \.
 
 
 --
--- TOC entry 5105 (class 0 OID 16448)
--- Dependencies: 226
 -- Data for Name: location; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.location (location_id, location_name) FROM stdin;
+1	Main Warehouse
+2	Secondary Storage
+3	Cold Room
 \.
 
 
 --
--- TOC entry 5108 (class 0 OID 16470)
--- Dependencies: 229
 -- Data for Name: locator; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.locator (locator_id, storage1, storage2, location_id) FROM stdin;
+1	Shelf A	Row 1	1
+2	Shelf B	Row 2	2
+3	Freezer 1	Cold	3
 \.
 
 
 --
--- TOC entry 5112 (class 0 OID 16489)
--- Dependencies: 233
 -- Data for Name: product; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.product (product_id, product_name, can_expire, total_quantity, threshold_min) FROM stdin;
+1	Milk	t	100	20
+2	Rice	f	500	100
 \.
 
 
 --
--- TOC entry 5113 (class 0 OID 16495)
--- Dependencies: 234
 -- Data for Name: product_supplier; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.product_supplier (product_id, supplier_id) FROM stdin;
+1	1
+1	2
+2	2
 \.
 
 
 --
--- TOC entry 5101 (class 0 OID 16429)
--- Dependencies: 222
 -- Data for Name: roles; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.roles (role_id, role_name) FROM stdin;
-1	HANDLER
-2	MANAGER
+1	MANAGER
+2	HANDLER
 \.
 
 
 --
--- TOC entry 5110 (class 0 OID 16482)
--- Dependencies: 231
 -- Data for Name: supplier; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.supplier (supplier_id, supplier_name, address, phone_no) FROM stdin;
+1	SupplierA	123 Street	123456789
+2	SupplierB	456 Avenue	987654321
 \.
 
 
 --
--- TOC entry 5117 (class 0 OID 16551)
--- Dependencies: 238
 -- Data for Name: transaction; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.transaction (trans_id, trans_type, trans_quantity, item_sn, trans_date, comments, supplier_id, product_id, locator_id) FROM stdin;
+1	IN	20	ITEM001	2025-04-15 15:34:15.257454	Initial stock	1	1	1
 \.
 
 
 --
--- TOC entry 5103 (class 0 OID 16436)
--- Dependencies: 224
 -- Data for Name: users; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
-COPY company1.users (user_id, first_name, last_name, password, role_id) FROM stdin;
-1	Jack	Jon	password123	1
+COPY company1.users (user_id, role_id, first_name, last_name, password) FROM stdin;
+1	1	John	Doe	$2b$12$OPTKjBBAdHzZ2PvbR4EAy.LS8KyNJLSu32RrzkCb8SH0BT/3SrOVq
+2	1	Alice	Wong	$2b$12$LVtMWa.tmtwctwA4EnuXx./yOxYR4BC9tkvYD4TyKtBqyHoyPy/SO
+3	2	Carol	Lee	$2b$12$TCFar8VA765m.Xmv1cvWDeOR1roNI277v.MCxsM6SGhFOULqre1r.
+4	2	Eve	Kim	$2b$12$sXElKWcEZ.1F.Tr71v6FuO7dbKD2KA2gpeMPuPvsR6NILT.CMsEaK
 \.
 
 
 --
--- TOC entry 5106 (class 0 OID 16454)
--- Dependencies: 227
 -- Data for Name: users_location; Type: TABLE DATA; Schema: company1; Owner: postgres
 --
 
 COPY company1.users_location (user_id, location_id) FROM stdin;
+1	1
+1	2
+2	2
 \.
 
 
 --
--- TOC entry 5139 (class 0 OID 16725)
--- Dependencies: 260
 -- Data for Name: alert; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1122,8 +1025,6 @@ COPY company2.alert (alert_id, item_sn, has_expired, low_stock, alert_date) FROM
 
 
 --
--- TOC entry 5135 (class 0 OID 16682)
--- Dependencies: 256
 -- Data for Name: consumeditem; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1132,8 +1033,6 @@ COPY company2.consumeditem (consumed_item_id, received_date, expiration_date, lo
 
 
 --
--- TOC entry 5134 (class 0 OID 16662)
--- Dependencies: 255
 -- Data for Name: item; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1142,8 +1041,6 @@ COPY company2.item (item_id, item_quantity, received_date, expiration_date, loca
 
 
 --
--- TOC entry 5125 (class 0 OID 16600)
--- Dependencies: 246
 -- Data for Name: location; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1152,8 +1049,6 @@ COPY company2.location (location_id, location_name) FROM stdin;
 
 
 --
--- TOC entry 5128 (class 0 OID 16622)
--- Dependencies: 249
 -- Data for Name: locator; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1162,8 +1057,6 @@ COPY company2.locator (locator_id, storage1, storage2, location_id) FROM stdin;
 
 
 --
--- TOC entry 5132 (class 0 OID 16641)
--- Dependencies: 253
 -- Data for Name: product; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1172,8 +1065,6 @@ COPY company2.product (product_id, product_name, can_expire, total_quantity, thr
 
 
 --
--- TOC entry 5133 (class 0 OID 16647)
--- Dependencies: 254
 -- Data for Name: product_supplier; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1182,18 +1073,16 @@ COPY company2.product_supplier (product_id, supplier_id) FROM stdin;
 
 
 --
--- TOC entry 5121 (class 0 OID 16581)
--- Dependencies: 242
 -- Data for Name: roles; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
 COPY company2.roles (role_id, role_name) FROM stdin;
+1	MANAGER
+2	HANDLER
 \.
 
 
 --
--- TOC entry 5130 (class 0 OID 16634)
--- Dependencies: 251
 -- Data for Name: supplier; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1202,8 +1091,6 @@ COPY company2.supplier (supplier_id, supplier_name, address, phone_no) FROM stdi
 
 
 --
--- TOC entry 5137 (class 0 OID 16703)
--- Dependencies: 258
 -- Data for Name: transaction; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1212,8 +1099,6 @@ COPY company2.transaction (trans_id, trans_type, trans_quantity, item_sn, trans_
 
 
 --
--- TOC entry 5123 (class 0 OID 16588)
--- Dependencies: 244
 -- Data for Name: users; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1222,8 +1107,6 @@ COPY company2.users (user_id, first_name, last_name, password, role_id) FROM std
 
 
 --
--- TOC entry 5126 (class 0 OID 16606)
--- Dependencies: 247
 -- Data for Name: users_location; Type: TABLE DATA; Schema: company2; Owner: postgres
 --
 
@@ -1232,56 +1115,44 @@ COPY company2.users_location (user_id, location_id) FROM stdin;
 
 
 --
--- TOC entry 5099 (class 0 OID 16392)
--- Dependencies: 220
 -- Data for Name: company; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.company (company_id, company_name, schema_name) FROM stdin;
-5193	Ronswald	company1
-9274	Maggie & Me	company2
+5193	Mayer&Son	company1
+374	Telephonia	company2
 \.
 
 
 --
--- TOC entry 5162 (class 0 OID 0)
--- Dependencies: 239
 -- Name: alert_alert_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.alert_alert_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.alert_alert_id_seq', 1, true);
 
 
 --
--- TOC entry 5163 (class 0 OID 0)
--- Dependencies: 225
 -- Name: location_location_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.location_location_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.location_location_id_seq', 12, true);
 
 
 --
--- TOC entry 5164 (class 0 OID 0)
--- Dependencies: 228
 -- Name: locator_locator_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.locator_locator_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.locator_locator_id_seq', 3, true);
 
 
 --
--- TOC entry 5165 (class 0 OID 0)
--- Dependencies: 232
 -- Name: product_product_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.product_product_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.product_product_id_seq', 4, true);
 
 
 --
--- TOC entry 5166 (class 0 OID 0)
--- Dependencies: 221
 -- Name: roles_role_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
@@ -1289,35 +1160,27 @@ SELECT pg_catalog.setval('company1.roles_role_id_seq', 1, false);
 
 
 --
--- TOC entry 5167 (class 0 OID 0)
--- Dependencies: 230
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.supplier_supplier_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.supplier_supplier_id_seq', 6, true);
 
 
 --
--- TOC entry 5168 (class 0 OID 0)
--- Dependencies: 237
 -- Name: transaction_trans_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.transaction_trans_id_seq', 1, false);
+SELECT pg_catalog.setval('company1.transaction_trans_id_seq', 1, true);
 
 
 --
--- TOC entry 5169 (class 0 OID 0)
--- Dependencies: 223
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: company1; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company1.users_user_id_seq', 1, true);
+SELECT pg_catalog.setval('company1.users_user_id_seq', 1, false);
 
 
 --
--- TOC entry 5170 (class 0 OID 0)
--- Dependencies: 259
 -- Name: alert_alert_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1325,8 +1188,6 @@ SELECT pg_catalog.setval('company2.alert_alert_id_seq', 1, false);
 
 
 --
--- TOC entry 5171 (class 0 OID 0)
--- Dependencies: 245
 -- Name: location_location_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1334,8 +1195,6 @@ SELECT pg_catalog.setval('company2.location_location_id_seq', 1, false);
 
 
 --
--- TOC entry 5172 (class 0 OID 0)
--- Dependencies: 248
 -- Name: locator_locator_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1343,8 +1202,6 @@ SELECT pg_catalog.setval('company2.locator_locator_id_seq', 1, false);
 
 
 --
--- TOC entry 5173 (class 0 OID 0)
--- Dependencies: 252
 -- Name: product_product_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1352,8 +1209,6 @@ SELECT pg_catalog.setval('company2.product_product_id_seq', 1, false);
 
 
 --
--- TOC entry 5174 (class 0 OID 0)
--- Dependencies: 241
 -- Name: roles_role_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1361,8 +1216,6 @@ SELECT pg_catalog.setval('company2.roles_role_id_seq', 1, false);
 
 
 --
--- TOC entry 5175 (class 0 OID 0)
--- Dependencies: 250
 -- Name: supplier_supplier_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1370,8 +1223,6 @@ SELECT pg_catalog.setval('company2.supplier_supplier_id_seq', 1, false);
 
 
 --
--- TOC entry 5176 (class 0 OID 0)
--- Dependencies: 257
 -- Name: transaction_trans_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1379,8 +1230,6 @@ SELECT pg_catalog.setval('company2.transaction_trans_id_seq', 1, false);
 
 
 --
--- TOC entry 5177 (class 0 OID 0)
--- Dependencies: 243
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: company2; Owner: postgres
 --
 
@@ -1388,16 +1237,13 @@ SELECT pg_catalog.setval('company2.users_user_id_seq', 1, false);
 
 
 --
--- TOC entry 5178 (class 0 OID 0)
--- Dependencies: 219
 -- Name: COMPANY_company_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."COMPANY_company_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."COMPANY_company_id_seq"', 1, false);
 
 
 --
--- TOC entry 4898 (class 2606 OID 16578)
 -- Name: alert alert_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1406,7 +1252,6 @@ ALTER TABLE ONLY company1.alert
 
 
 --
--- TOC entry 4894 (class 2606 OID 16534)
 -- Name: consumeditem consumeditem_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1415,7 +1260,6 @@ ALTER TABLE ONLY company1.consumeditem
 
 
 --
--- TOC entry 4892 (class 2606 OID 16514)
 -- Name: item item_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1424,7 +1268,6 @@ ALTER TABLE ONLY company1.item
 
 
 --
--- TOC entry 4880 (class 2606 OID 16453)
 -- Name: location location_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1433,7 +1276,6 @@ ALTER TABLE ONLY company1.location
 
 
 --
--- TOC entry 4884 (class 2606 OID 16475)
 -- Name: locator locator_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1442,7 +1284,6 @@ ALTER TABLE ONLY company1.locator
 
 
 --
--- TOC entry 4888 (class 2606 OID 16494)
 -- Name: product product_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1451,7 +1292,6 @@ ALTER TABLE ONLY company1.product
 
 
 --
--- TOC entry 4890 (class 2606 OID 16499)
 -- Name: product_supplier product_supplier_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1460,7 +1300,6 @@ ALTER TABLE ONLY company1.product_supplier
 
 
 --
--- TOC entry 4876 (class 2606 OID 16434)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1469,7 +1308,6 @@ ALTER TABLE ONLY company1.roles
 
 
 --
--- TOC entry 4886 (class 2606 OID 16487)
 -- Name: supplier supplier_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1478,7 +1316,6 @@ ALTER TABLE ONLY company1.supplier
 
 
 --
--- TOC entry 4896 (class 2606 OID 16556)
 -- Name: transaction transaction_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1487,7 +1324,6 @@ ALTER TABLE ONLY company1.transaction
 
 
 --
--- TOC entry 4882 (class 2606 OID 16458)
 -- Name: users_location users_location_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1496,7 +1332,6 @@ ALTER TABLE ONLY company1.users_location
 
 
 --
--- TOC entry 4878 (class 2606 OID 16441)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1505,7 +1340,6 @@ ALTER TABLE ONLY company1.users
 
 
 --
--- TOC entry 4922 (class 2606 OID 16730)
 -- Name: alert alert_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1514,7 +1348,6 @@ ALTER TABLE ONLY company2.alert
 
 
 --
--- TOC entry 4918 (class 2606 OID 16686)
 -- Name: consumeditem consumeditem_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1523,7 +1356,6 @@ ALTER TABLE ONLY company2.consumeditem
 
 
 --
--- TOC entry 4916 (class 2606 OID 16666)
 -- Name: item item_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1532,7 +1364,6 @@ ALTER TABLE ONLY company2.item
 
 
 --
--- TOC entry 4904 (class 2606 OID 16605)
 -- Name: location location_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1541,7 +1372,6 @@ ALTER TABLE ONLY company2.location
 
 
 --
--- TOC entry 4908 (class 2606 OID 16627)
 -- Name: locator locator_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1550,7 +1380,6 @@ ALTER TABLE ONLY company2.locator
 
 
 --
--- TOC entry 4912 (class 2606 OID 16646)
 -- Name: product product_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1559,7 +1388,6 @@ ALTER TABLE ONLY company2.product
 
 
 --
--- TOC entry 4914 (class 2606 OID 16651)
 -- Name: product_supplier product_supplier_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1568,7 +1396,6 @@ ALTER TABLE ONLY company2.product_supplier
 
 
 --
--- TOC entry 4900 (class 2606 OID 16586)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1577,7 +1404,6 @@ ALTER TABLE ONLY company2.roles
 
 
 --
--- TOC entry 4910 (class 2606 OID 16639)
 -- Name: supplier supplier_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1586,7 +1412,6 @@ ALTER TABLE ONLY company2.supplier
 
 
 --
--- TOC entry 4920 (class 2606 OID 16708)
 -- Name: transaction transaction_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1595,7 +1420,6 @@ ALTER TABLE ONLY company2.transaction
 
 
 --
--- TOC entry 4906 (class 2606 OID 16610)
 -- Name: users_location users_location_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1604,7 +1428,6 @@ ALTER TABLE ONLY company2.users_location
 
 
 --
--- TOC entry 4902 (class 2606 OID 16593)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1613,7 +1436,6 @@ ALTER TABLE ONLY company2.users
 
 
 --
--- TOC entry 4874 (class 2606 OID 16399)
 -- Name: company COMPANY_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1622,7 +1444,6 @@ ALTER TABLE ONLY public.company
 
 
 --
--- TOC entry 4932 (class 2606 OID 16535)
 -- Name: consumeditem consumeditem_locator_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1631,7 +1452,6 @@ ALTER TABLE ONLY company1.consumeditem
 
 
 --
--- TOC entry 4933 (class 2606 OID 16545)
 -- Name: consumeditem consumeditem_product_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1640,7 +1460,6 @@ ALTER TABLE ONLY company1.consumeditem
 
 
 --
--- TOC entry 4934 (class 2606 OID 16540)
 -- Name: consumeditem consumeditem_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1649,7 +1468,6 @@ ALTER TABLE ONLY company1.consumeditem
 
 
 --
--- TOC entry 4929 (class 2606 OID 16515)
 -- Name: item item_locator_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1658,7 +1476,6 @@ ALTER TABLE ONLY company1.item
 
 
 --
--- TOC entry 4930 (class 2606 OID 16525)
 -- Name: item item_product_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1667,7 +1484,6 @@ ALTER TABLE ONLY company1.item
 
 
 --
--- TOC entry 4931 (class 2606 OID 16520)
 -- Name: item item_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1676,7 +1492,6 @@ ALTER TABLE ONLY company1.item
 
 
 --
--- TOC entry 4926 (class 2606 OID 16476)
 -- Name: locator locator_location_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1685,7 +1500,6 @@ ALTER TABLE ONLY company1.locator
 
 
 --
--- TOC entry 4927 (class 2606 OID 16500)
 -- Name: product_supplier product_supplier_product_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1694,7 +1508,6 @@ ALTER TABLE ONLY company1.product_supplier
 
 
 --
--- TOC entry 4928 (class 2606 OID 16505)
 -- Name: product_supplier product_supplier_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1703,7 +1516,6 @@ ALTER TABLE ONLY company1.product_supplier
 
 
 --
--- TOC entry 4935 (class 2606 OID 16567)
 -- Name: transaction transaction_locator_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1712,7 +1524,6 @@ ALTER TABLE ONLY company1.transaction
 
 
 --
--- TOC entry 4936 (class 2606 OID 16562)
 -- Name: transaction transaction_product_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1721,7 +1532,6 @@ ALTER TABLE ONLY company1.transaction
 
 
 --
--- TOC entry 4937 (class 2606 OID 16557)
 -- Name: transaction transaction_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1730,7 +1540,6 @@ ALTER TABLE ONLY company1.transaction
 
 
 --
--- TOC entry 4924 (class 2606 OID 16464)
 -- Name: users_location users_location_location_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1739,7 +1548,6 @@ ALTER TABLE ONLY company1.users_location
 
 
 --
--- TOC entry 4925 (class 2606 OID 16459)
 -- Name: users_location users_location_user_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1748,7 +1556,6 @@ ALTER TABLE ONLY company1.users_location
 
 
 --
--- TOC entry 4923 (class 2606 OID 16442)
 -- Name: users users_role_id_fkey; Type: FK CONSTRAINT; Schema: company1; Owner: postgres
 --
 
@@ -1757,7 +1564,6 @@ ALTER TABLE ONLY company1.users
 
 
 --
--- TOC entry 4947 (class 2606 OID 16687)
 -- Name: consumeditem consumeditem_locator_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1766,7 +1572,6 @@ ALTER TABLE ONLY company2.consumeditem
 
 
 --
--- TOC entry 4948 (class 2606 OID 16697)
 -- Name: consumeditem consumeditem_product_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1775,7 +1580,6 @@ ALTER TABLE ONLY company2.consumeditem
 
 
 --
--- TOC entry 4949 (class 2606 OID 16692)
 -- Name: consumeditem consumeditem_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1784,7 +1588,6 @@ ALTER TABLE ONLY company2.consumeditem
 
 
 --
--- TOC entry 4944 (class 2606 OID 16667)
 -- Name: item item_locator_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1793,7 +1596,6 @@ ALTER TABLE ONLY company2.item
 
 
 --
--- TOC entry 4945 (class 2606 OID 16677)
 -- Name: item item_product_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1802,7 +1604,6 @@ ALTER TABLE ONLY company2.item
 
 
 --
--- TOC entry 4946 (class 2606 OID 16672)
 -- Name: item item_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1811,7 +1612,6 @@ ALTER TABLE ONLY company2.item
 
 
 --
--- TOC entry 4941 (class 2606 OID 16628)
 -- Name: locator locator_location_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1820,7 +1620,6 @@ ALTER TABLE ONLY company2.locator
 
 
 --
--- TOC entry 4942 (class 2606 OID 16652)
 -- Name: product_supplier product_supplier_product_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1829,7 +1628,6 @@ ALTER TABLE ONLY company2.product_supplier
 
 
 --
--- TOC entry 4943 (class 2606 OID 16657)
 -- Name: product_supplier product_supplier_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1838,7 +1636,6 @@ ALTER TABLE ONLY company2.product_supplier
 
 
 --
--- TOC entry 4950 (class 2606 OID 16719)
 -- Name: transaction transaction_locator_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1847,7 +1644,6 @@ ALTER TABLE ONLY company2.transaction
 
 
 --
--- TOC entry 4951 (class 2606 OID 16714)
 -- Name: transaction transaction_product_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1856,7 +1652,6 @@ ALTER TABLE ONLY company2.transaction
 
 
 --
--- TOC entry 4952 (class 2606 OID 16709)
 -- Name: transaction transaction_supplier_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1865,7 +1660,6 @@ ALTER TABLE ONLY company2.transaction
 
 
 --
--- TOC entry 4939 (class 2606 OID 16616)
 -- Name: users_location users_location_location_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1874,7 +1668,6 @@ ALTER TABLE ONLY company2.users_location
 
 
 --
--- TOC entry 4940 (class 2606 OID 16611)
 -- Name: users_location users_location_user_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
@@ -1883,15 +1676,12 @@ ALTER TABLE ONLY company2.users_location
 
 
 --
--- TOC entry 4938 (class 2606 OID 16594)
 -- Name: users users_role_id_fkey; Type: FK CONSTRAINT; Schema: company2; Owner: postgres
 --
 
 ALTER TABLE ONLY company2.users
     ADD CONSTRAINT users_role_id_fkey FOREIGN KEY (role_id) REFERENCES company2.roles(role_id);
 
-
--- Completed on 2025-04-03 05:00:44
 
 --
 -- PostgreSQL database dump complete
