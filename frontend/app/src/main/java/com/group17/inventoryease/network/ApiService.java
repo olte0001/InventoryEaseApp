@@ -11,6 +11,7 @@ import com.group17.inventoryease.dtos.ReceiveItemDTO;
 import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
 import com.group17.inventoryease.dtos.ProductDTO;
+import com.group17.inventoryease.dtos.LocationDTO;
 
 import java.util.List;
 

@@ -2,6 +2,8 @@ package com.group17.inventoryease;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,17 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.group17.inventoryease.dtos.CompanyIdRequest;
 import com.group17.inventoryease.dtos.CompanyIdResponse;
 import com.group17.inventoryease.network.ApiClient;
 import com.group17.inventoryease.network.ApiService;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText companyIdEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,24 @@ public class MainActivity extends AppCompatActivity {
             // Fetch the value from the EditText and send it to backend for validation
             @Override
             public void onClick(View view) {
-                EditText companyEntry = findViewById(R.id.companyIdEntry);
-                String companyId = companyEntry.getText().toString();
-                validateCompanyId(Math.toIntExact(Long.parseLong(companyId)));
-            }
+                companyIdEntry = findViewById(R.id.companyIdEntry);
+                String companyIdString = companyIdEntry.getText().toString().trim();
+                
+                if (companyIdString.isEmpty()) {
+                companyIdEntry.setError("Company ID is required");
+                return;
+                }
+
+                int companyId;
+                try {
+                    companyId = Integer.parseInt(companyIdString);
+                } catch (NumberFormatException e) {
+                    companyIdEntry.setError("Invalid Company ID");
+                    return;
+                }
+              
+                validateCompanyId(companyId);
+                }
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
     }
 
     // This method validates the company identifier inputted by the user.
@@ -57,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         CompanyIdRequest request = new CompanyIdRequest(companyId);
 
-        // Source: https://medium.com/@erdi.koc/retrofit-and-okhttp-675d34eb7458
         Call<CompanyIdResponse> call = apiService.validateCompanyId(request);
         call.enqueue(new Callback<CompanyIdResponse>() {
             @Override
             public void onResponse(@NonNull Call<CompanyIdResponse> call, @NonNull Response<CompanyIdResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     Log.e("MainActivity", "Response Code: " + response.code());
+
                     // Store the company name and move on to the logging page
                     Intent intent = new Intent(MainActivity.this, LoggingActivity.class);
                     intent.putExtra("companyName", response.body().getCompanyName());
@@ -72,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // Display message of invalid company identifier
+                    Toast.makeText(MainActivity.this, "Invalid Company ID", Toast.LENGTH_LONG).show();
+                    companyIdEntry.getText().clear(); // Clear the input for retry
                     Log.e("MainActivity", "Error: Company name not found. Response Code: " + response.code());
-                    ((EditText) findViewById(R.id.companyIdEntry)).getText().clear();
-                    ((TextView) findViewById(R.id.companyErrorText)).setText("Error: Company name not found"); // FIXME: when you input a wrong identifier, the error message does not show on the screen.
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<CompanyIdResponse> call, @NonNull Throwable t) {
-                //  Display message that error on our side and to retry
-                ((EditText) findViewById(R.id.companyIdEntry)).getText().clear();
-                ((TextView) findViewById(R.id.companyErrorText)).setText("An error as occurred on our side.");
+            public void onFailure(Call<CompanyIdResponse> call, Throwable t) {
+                // Display message that error on our side and to retry
+                Toast.makeText(MainActivity.this, "Error on our side. Please retry.", Toast.LENGTH_LONG).show();
+                companyIdEntry.getText().clear(); // Clear the input for retry
                 Log.e("MainActivity", "Validate Company Error", t);
             }
         });
