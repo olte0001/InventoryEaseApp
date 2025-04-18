@@ -1,6 +1,10 @@
-package com.group17.inventoryease.ums.models;
+package com.group17.inventoryease.transaction.models;
 
-import javax.persistence.*;
+import com.group17.inventoryease.inventory.models.Product;
+import com.group17.inventoryease.inventory.models.Supplier;
+import com.group17.inventoryease.inventory.models.Locator;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,8 @@
-package com.group17.inventoryease.ums.models;
+package com.group17.inventoryease.inventory.models;
 
-import javax.persistence.*;
+import com.group17.inventoryease.ums.models.Location;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

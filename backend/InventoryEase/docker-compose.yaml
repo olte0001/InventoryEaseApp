@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=invease_db'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  backend:
+    build: ./
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/invease_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_APPLICATION_NAME=InventoryEase
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+volumes:
+  postgres-data:
+
+networks:
+  backend:
+    driver: bridge
+
+
+    # Sources: https://medium.com/@saygiligozde/using-docker-compose-with-spring-boot-and-postgresql-235031106f9f
+    #         https://spring.io/blog/2023/06/21/docker-compose-support-in-spring-boot-3-1
+    #         https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
+    #         https://forums.docker.com/t/automatically-connect-pgadmin-to-a-postgresql-volume-on-which-there-is-a-database-and-automatically-load-a-schema-present-on-a-sql-file-with-docker-compose/124647
+    #         https://medium.com/@vishal.sharma./run-postgresql-and-pgadmin-using-docker-compose-34120618bcf9
+

@@ -1,5 +1,7 @@
 package com.group17.inventoryease.inventory.dtos;
 
+import java.util.Set;
+
 public class ProductDTO {
     private Long productId;
     private String productName;

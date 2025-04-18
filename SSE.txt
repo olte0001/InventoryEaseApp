@@ -1,0 +1,13 @@
+If a change is made in the inventory in the database, it needs to dynamically display it to the mobile user. Will be achieved with Server-Sent Events.
+
+Example 1: 
+User 1 is looking all of the recorded items in its mobile app. User 2 insert a new item using the application. The change needs to be reflected on User 1 screen's.
+
+So you will need to test it with two emulators: in one you're viewing the inventory (Search Inventory) and in the other one you're modifying inventory (Receive, Move and Consume Inventory).
+
+Example 2:
+User 1 is looking all of the recorded items in its mobile app. An external service sells an item and removes its record from the database. The change needs to be reflected on User 1 screen's.
+
+So you will add a transaction to the transaction table that will go modify the inventory in the database (triggers) at the same time as viewing the inventory o the emulator (Search Inventory)
+
+Also understand that the docker Postgre container is a running instance of the PostgreSQL database, it's like a host. See how that might affect the SSE implementation.

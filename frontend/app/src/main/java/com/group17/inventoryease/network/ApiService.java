@@ -21,18 +21,15 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("api/ums/validate-company-identifier")
+    @POST("/ums/validate-company-identifier")
     Call<CompanyIdResponse> validateCompanyId(@Body CompanyIdRequest request);
 
-    @POST("api/ums/login")
+    @POST("/ums/login")
     Call<LoginResponse> login(@Body LoginRequest request);
 
-    @GET("api/inventory/products")
+    @GET("/inventory/products")
     Call<List<ProductDTO>> getAllProductsWithSuppliers();
 
-    @GET("locations")
-    Call<List<LocationDTO>> getLocations();
-
-    @POST("api/inventory/receive")
+    @POST("/inventory/receive")
     Call<Void> receiveItem(@Body ReceiveItemDTO item);
 }

@@ -13,4 +13,9 @@ public class LoginResponse {
     public long getExpiresIn() {
         return expiresIn;
     }
+
+    public LoginResponse (String token, long expiresIn) {
+        this.token = token;
+        this.expiresIn = expiresIn;
+    }
 }

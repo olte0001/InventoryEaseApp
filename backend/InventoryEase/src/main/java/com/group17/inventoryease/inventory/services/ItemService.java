@@ -1,8 +1,20 @@
 package com.group17.inventoryease.inventory.services;
 
-import com.group17.inventoryease.ums.repositories.LocationRepository;
+import com.group17.inventoryease.inventory.models.Item;
+import com.group17.inventoryease.inventory.models.Product;
+import com.group17.inventoryease.inventory.models.Supplier;
 import com.group17.inventoryease.inventory.models.Locator;
+import com.group17.inventoryease.inventory.repositories.ItemRepository;
+import com.group17.inventoryease.inventory.repositories.ProductRepository;
+import com.group17.inventoryease.inventory.repositories.SupplierRepository;
+import com.group17.inventoryease.ums.models.Location;
+import com.group17.inventoryease.ums.repositories.LocationRepository;
+import com.group17.inventoryease.inventory.dtos.ReceiveItemDTO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ItemService {
     @Autowired
     private ProductRepository productRepository;
@@ -17,13 +29,13 @@ public class ItemService {
     private LocationRepository locationRepository;
 
     public void receiveItem(ReceiveItemDTO item){
-        Product product = productRepository.findById(item.getProductId())
+        Product product = productRepository.findById(Long.valueOf(item.getProductId()))
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        Supplier supplier = supplierRepository.findById(item.getSupplierId())
+        Supplier supplier = supplierRepository.findById(Long.valueOf(item.getSupplierId()))
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
 
-        Supplier location = locationRepository.findById(item.getLocationId())
+        Location location = locationRepository.findById(Long.valueOf(item.getLocationId()))
                 .orElseThrow(() -> new RuntimeException("Location not found"));
 
         Item itemDB = new Item();
@@ -39,7 +51,8 @@ public class ItemService {
         itemRepository.save(itemDB);
     }
 
-    public String generateSerialNumber(){
+    public Long generateSerialNumber(){
         // TODO: implementation of generateSerialNumber();
+        return null;
     }
 }

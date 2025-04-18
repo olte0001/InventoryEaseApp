@@ -1,7 +1,22 @@
 package com.group17.inventoryease.inventory.controllers;
 
+import com.group17.inventoryease.inventory.dtos.ProductDTO;
+import com.group17.inventoryease.inventory.dtos.ReceiveItemDTO;
+import com.group17.inventoryease.inventory.services.ItemService;
+import com.group17.inventoryease.inventory.services.ProductService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/inventory")
 public class InventoryController {
 
     @Autowired
@@ -15,7 +30,7 @@ public class InventoryController {
         return productService.getAllProductsWithSuppliers();
     }
 
-    @POST("api/inventory/receive")
+    @PostMapping("/receive")
     public ResponseEntity<Void> receiveItem(@RequestBody ReceiveItemDTO item) {
            itemService.receiveItem(item);
            productService.updateQuantity(item.getProductId(), item.getItemQuantity());

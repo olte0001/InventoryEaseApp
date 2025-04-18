@@ -30,8 +30,9 @@ public class ReceiveActivity extends AppCompatActivity {
     private Spinner supplierSpinner;
     private EditText qtyEditText;
     private EditText expEditText;
-    private Button submitButton;
     private Button cancelButton;
+    private Button confirmButton;
+    private Button continueButton;
 
     private List<ProductDTO> products;
     private ProductDTO selectedProduct;
@@ -47,15 +48,18 @@ public class ReceiveActivity extends AppCompatActivity {
         supplierSpinner = findViewById(R.id.supplier_spinner);
         qtyEditText = findViewById(R.id.quantity_input);
         expEditText = findViewById(R.id.expiry_date_input);
-        submitButton = findViewById(R.id.submit_button);
+        continueButton = findViewById(R.id.confirmContinueButton);
+        confirmButton = findViewById(R.id.confirmConfirmButton);
         cancelButton = findViewById(R.id.cancel_button);
 
-        // Set initial visibility (only product spinner is visible when the activity loads)
+        // Set initial visibility
+        productSpinner.setVisibility(View.VISIBLE);
+        cancelButton.setVisibility(View.VISIBLE);
         supplierSpinner.setVisibility(View.GONE);
         qtyEditText.setVisibility(View.GONE);
         expEditText.setVisibility(View.GONE);
-        submitButton.setVisibility(View.GONE);
-        cancelButton.setVisibility(View.GONE);
+        confirmButton.setVisibility(View.GONE);
+        continueButton.setVisibility(View.GONE);
 
         getPreApprovedProducts();
 
@@ -64,8 +68,8 @@ public class ReceiveActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-        submitButton.setOnClickListener(v -> {
+      
+        confirmButton.setOnClickListener(v -> {
             String qtyString = qtyEditText.getText().toString().trim();
             if (qtyString.isEmpty()) {
                 qtyEditText.setError("Quantity is required");
@@ -111,7 +115,9 @@ public class ReceiveActivity extends AppCompatActivity {
             item.setLocationId(tokenManager.getCurrentLocation());
 
             addToInventory(item);
+
         });
+
     }
 
     private void getPreApprovedProducts() {
@@ -153,8 +159,9 @@ public class ReceiveActivity extends AppCompatActivity {
 
                 supplierSpinner.setVisibility(View.VISIBLE);
                 qtyEditText.setVisibility(View.VISIBLE);
-                submitButton.setVisibility(View.VISIBLE);
-                cancelButton.setVisibility(View.VISIBLE);
+
+                confirmButton.setVisibility(View.VISIBLE);
+                continueButton.setVisibility(View.VISIBLE);
 
                 if (selectedProduct.getCanExpire()) {
                     expEditText.setVisibility(View.VISIBLE);
@@ -165,11 +172,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                supplierSpinner.setVisibility(View.GONE);
-                qtyEditText.setVisibility(View.GONE);
-                expEditText.setVisibility(View.GONE);
-                submitButton.setVisibility(View.GONE);
-                cancelButton.setVisibility(View.GONE);
+
             }
         });
     }
@@ -192,22 +195,37 @@ public class ReceiveActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedSupplier = null;
+
             }
         });
     }
 
-    private void addToInventory(ReceiveItemDTO item) {
+    private void addToInventory() {
+        int quantity = Integer.parseInt(qtyEditText.getText().toString());
+
+        // TODO: retrieve a LocalDateTime from date picker
+        LocalDateTime expirationDate = null;
+
+        ReceiveItemDTO item = new ReceiveItemDTO();
+        item.setItemQuantity(quantity);
+        item.setExpirationDate(selectedProduct.getCanExpire() ? expirationDate : null);
+        item.setReceivedDate(LocalDateTime.now());
+        item.setProductId(String.valueOf(selectedProduct.getProductId()));
+        item.setSupplierId(selectedSupplier.getSupplierId());
+        TokenManager tokenManager = new TokenManager(ReceiveActivity.this);
+        item.setLocationId(tokenManager.getCurrentLocation());
+
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         Call<Void> call = apiService.receiveItem(item);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+
                 if (response.isSuccessful()) {
                     Toast.makeText(ReceiveActivity.this, "Item added successfully!", Toast.LENGTH_SHORT).show();
 
-                    qtyEditText.setText("");
-                    expEditText.setText("");
+                    qtyEditText.getText().clear();
+                    expEditText.getText().clear();
                     productSpinner.setSelection(0);
                     supplierSpinner.setSelection(0);
                     supplierSpinner.setVisibility(View.GONE);
@@ -215,6 +233,8 @@ public class ReceiveActivity extends AppCompatActivity {
                     expEditText.setVisibility(View.GONE);
                     submitButton.setVisibility(View.GONE);
                     cancelButton.setVisibility(View.GONE);
+                  
+                  //TODO: it's printing at the same time?
 
                     new AlertDialog.Builder(ReceiveActivity.this)
                             .setTitle("Continue?")

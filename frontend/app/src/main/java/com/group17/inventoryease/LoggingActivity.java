@@ -2,10 +2,12 @@ package com.group17.inventoryease;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.group17.inventoryease.dtos.LoginRequest;
 import com.group17.inventoryease.dtos.LoginResponse;
@@ -17,11 +19,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoggingActivity extends AppCompatActivity {
-
     private TextView welcomeTextView;
     private EditText usernameInput;
     private EditText passwordInput;
-    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,6 @@ public class LoggingActivity extends AppCompatActivity {
         welcomeTextView = findViewById(R.id.welcome_textview);
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
-        loginButton = findViewById(R.id.login_button);
 
         // Display the company name in the welcome message
         String companyName = getIntent().getStringExtra("companyName");
@@ -42,28 +41,32 @@ public class LoggingActivity extends AppCompatActivity {
             welcomeTextView.setText("Welcome!");
         }
 
-        // Set up login button click listener
-        loginButton.setOnClickListener(v -> {
-            String username = usernameInput.getText().toString().trim();
-            String password = passwordInput.getText().toString().trim();
+        // Set up login button click listener: when submit button pressed, take user credentials and .loginUser() which is down below
+        Button submitButton = findViewById(R.id.loginSubmitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = usernameInput.getText().toString().trim();
+                String password = passwordInput.getText().toString().trim();
 
-            // Validate inputs
-            if (username.isEmpty()) {
-                usernameInput.setError("Username is required");
-                return;
-            }
-            if (password.isEmpty()) {
-                passwordInput.setError("Password is required");
-                return;
-            }
+                // Validate inputs
+                if (username.isEmpty()) {
+                    usernameInput.setError("Username is required");
+                    return;
+                }
+                if (password.isEmpty()) {
+                    passwordInput.setError("Password is required");
+                    return;
+                }
 
-            loginUser(username, password);
+                loginUser(username, password);
+            }
         });
     }
 
     private void loginUser(String username, String pwd) {
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
-        LoginRequest request = new LoginRequest(username, pwd);
+        LoginRequest request = new LoginRequest(username, pwd, schemaName);
 
         Call<LoginResponse> call = apiService.login(request);
         call.enqueue(new Callback<LoginResponse>() {
@@ -76,14 +79,14 @@ public class LoggingActivity extends AppCompatActivity {
 
                     String company = getIntent().getStringExtra("companyName");
                     Intent intent = new Intent(LoggingActivity.this, CurrentLocationActivity.class);
-                    intent.putExtra("companyName", company);
+                    intent.putExtra("companyName", company);  //TODO: get schema name from response
                     startActivity(intent);
                     finish();
                 } else {
                     // Display message of invalid credentials
                     Toast.makeText(LoggingActivity.this, "Invalid credentials", Toast.LENGTH_LONG).show();
-                    usernameInput.setText(""); // Clear inputs for retry
-                    passwordInput.setText("");
+                    usernameInput.getText().clear(); // Clear inputs for retry
+                    passwordInput.getText().clear();
                 }
             }
 
@@ -91,8 +94,8 @@ public class LoggingActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 // Display message that error on our side and to retry
                 Toast.makeText(LoggingActivity.this, "Error on our side. Please retry.", Toast.LENGTH_LONG).show();
-                usernameInput.setText(""); // Clear inputs for retry
-                passwordInput.setText("");
+                usernameInput.getText().clear(); // Clear inputs for retry
+                passwordInput.getText().clear();
             }
         });
     }

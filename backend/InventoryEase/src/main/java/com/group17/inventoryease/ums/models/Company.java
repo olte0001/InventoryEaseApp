@@ -1,16 +1,19 @@
 package com.group17.inventoryease.ums.models;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-import java.util.Objects;
-
 @Entity
-@Table(name = "company")
+@Table(name = "company", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,6 +27,6 @@ public class Company {
     @Column(name = "company_name")
     private String companyName;
 
-    @Column(name = "company_schema")
+    @Column(name = "schema_name")
     private String companySchema;
 }

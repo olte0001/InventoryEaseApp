@@ -1,5 +1,7 @@
 package com.group17.inventoryease.inventory.dtos;
 
+import java.time.LocalDateTime;
+
 public class ReceiveItemDTO {
     private Integer itemQuantity;
     private LocalDateTime receivedDate;
@@ -53,4 +55,7 @@ public class ReceiveItemDTO {
         this.locationId = locationId;
     }
 
+    public Integer getQuantity() {
+        return itemQuantity;
+    }
 }
