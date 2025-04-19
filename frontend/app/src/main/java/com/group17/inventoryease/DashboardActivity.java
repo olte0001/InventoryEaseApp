@@ -10,7 +10,7 @@ import com.group17.inventoryease.network.TokenManager;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    //TODO: might have to get schemaName, not sure will verify that
+    //TODO: IULIA - might have to get schemaName, not sure will verify that
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

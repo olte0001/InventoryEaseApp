@@ -214,7 +214,7 @@ public class ReceiveActivity extends AppCompatActivity {
                     confirmButton.setVisibility(View.GONE);
                     cancelButton.setVisibility(View.GONE);
                   
-                  //TODO: it's printing at the same time? Do we show message that it has been printed?
+                  //TODO: KEVIN - it's printing at the same time? Do we show message that it has been printed?
 
                     new AlertDialog.Builder(ReceiveActivity.this)
                             .setTitle("Continue?")

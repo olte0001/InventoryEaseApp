@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
+    <!--FIXME: layout is now showing well-->
+
     <!--Company name-->
     <TextView
         android:id="@+id/welcome_textview"
