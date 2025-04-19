@@ -26,11 +26,6 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".MoveActivity" />
         <activity android:name=".ConsumeActivity" />
-        <activity android:name=".TransactionLogsActivity" />
-        <activity android:name=".AlertsActivity" />
-        <activity android:name=".PrintBarcodesActivity" />
-        <activity android:name=".ManageUsersActivity" />
-        <activity android:name=".InventoryThresholdsActivity" />
         <activity android:name=".LoggingActivity" />
         <activity android:name=".CurrentLocationActivity" />
     </application>

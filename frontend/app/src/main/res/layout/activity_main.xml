@@ -25,8 +25,8 @@
         android:text="@string/companyIdPrompt"
         android:textSize="14sp"
         android:layout_alignLeft="@id/companyIdEntry"
-        android:layout_above="@id/companyIdEntry"
-        ></TextView>
+        android:layout_above="@id/companyIdEntry">
+    </TextView>
 
     <EditText
         android:layout_width="200dp"
@@ -44,9 +44,7 @@
         android:id="@+id/companySubmit"
         android:text="@string/submit"
         android:layout_below="@id/companyIdEntry"
-        android:layout_alignLeft="@id/companyIdEntry"
-        >
-
+        android:layout_alignLeft="@id/companyIdEntry">
     </Button>
 
     <TextView

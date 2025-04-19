@@ -35,9 +35,6 @@ public class UmsController {
     private SchemaService schemaService;
 
     @Autowired
-    private TenantIdentifierResolver tenantIdentifierResolver;
-
-    @Autowired
     private AuthenticationService authenticationService;
 
     @Autowired

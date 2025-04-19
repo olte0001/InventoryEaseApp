@@ -10,10 +10,7 @@ import com.group17.inventoryease.network.TokenManager;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private TextView dashboardTitle;
-    private Button receiveInventoryButton, searchInventoryButton, moveInventoryButton, consumeInventoryButton;
-    private Button transactionLogsButton, inventoryThresholdsButton;
-    private boolean isAdmin;
+    //TODO: might have to get schemaName, not sure will verify that
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +18,11 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         // Initialize UI elements
-        dashboardTitle = findViewById(R.id.dashboard_title);
-        receiveInventoryButton = findViewById(R.id.receive_inventory_button);
-        searchInventoryButton = findViewById(R.id.search_inventory_button);
-        moveInventoryButton = findViewById(R.id.move_inventory_button);
-        consumeInventoryButton = findViewById(R.id.consume_inventory_button);
-        transactionLogsButton = findViewById(R.id.transaction_logs_button);
-        inventoryThresholdsButton = findViewById(R.id.inventory_thresholds_button);
+        TextView dashboardTitle = findViewById(R.id.dashboard_title);
+        Button receiveInventoryButton = findViewById(R.id.receive_inventory_button);
+        Button searchInventoryButton = findViewById(R.id.search_inventory_button);
+        Button moveInventoryButton = findViewById(R.id.move_inventory_button);
+        Button consumeInventoryButton = findViewById(R.id.consume_inventory_button);
 
         // Display company and location in the title
         String company = getIntent().getStringExtra("company");
@@ -41,15 +36,6 @@ public class DashboardActivity extends AppCompatActivity {
             title = "InventoryEase - " + locationName;
         }
         dashboardTitle.setText(title);
-
-        // Fetch role from JWT token
-        fetchUserRole();
-
-        // Show admin-only buttons if the user is an admin
-        if (isAdmin) {
-            transactionLogsButton.setVisibility(View.VISIBLE);
-            inventoryThresholdsButton.setVisibility(View.VISIBLE);
-        }
 
         // Set up button click listeners for navigation
         receiveInventoryButton.setOnClickListener(v -> {
@@ -67,19 +53,5 @@ public class DashboardActivity extends AppCompatActivity {
         consumeInventoryButton.setOnClickListener(v -> {
             startActivity(new Intent(DashboardActivity.this, ConsumeActivity.class));
         });
-
-        transactionLogsButton.setOnClickListener(v -> {
-            startActivity(new Intent(DashboardActivity.this, TransactionLogsActivity.class));
-        });
-
-        inventoryThresholdsButton.setOnClickListener(v -> {
-            startActivity(new Intent(DashboardActivity.this, InventoryThresholdsActivity.class));
-        });
-    }
-
-    private void fetchUserRole() {
-        TokenManager tokenManager = new TokenManager(this);
-        String role = tokenManager.getUserRole();
-        isAdmin = "admin".equalsIgnoreCase(role);
     }
 }

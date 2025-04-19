@@ -9,7 +9,6 @@
         android:id="@+id/company_name_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Company: [Name]"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
@@ -17,7 +16,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select your current working location"
+        android:text="Select your current working location:"
         android:textSize="16sp"
         android:layout_marginBottom="8dp"/>
 

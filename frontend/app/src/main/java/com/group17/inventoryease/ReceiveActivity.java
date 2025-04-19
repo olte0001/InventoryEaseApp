@@ -32,7 +32,6 @@ public class ReceiveActivity extends AppCompatActivity {
     private EditText expEditText;
     private Button cancelButton;
     private Button confirmButton;
-    private Button continueButton;
 
     private List<ProductDTO> products;
     private ProductDTO selectedProduct;
@@ -48,8 +47,7 @@ public class ReceiveActivity extends AppCompatActivity {
         supplierSpinner = findViewById(R.id.supplier_spinner);
         qtyEditText = findViewById(R.id.quantity_input);
         expEditText = findViewById(R.id.expiry_date_input);
-        continueButton = findViewById(R.id.confirmContinueButton);
-        confirmButton = findViewById(R.id.confirmConfirmButton);
+        confirmButton = findViewById(R.id.confirm_button);
         cancelButton = findViewById(R.id.cancel_button);
 
         // Set initial visibility
@@ -59,7 +57,6 @@ public class ReceiveActivity extends AppCompatActivity {
         qtyEditText.setVisibility(View.GONE);
         expEditText.setVisibility(View.GONE);
         confirmButton.setVisibility(View.GONE);
-        continueButton.setVisibility(View.GONE);
 
         getPreApprovedProducts();
 
@@ -115,7 +112,6 @@ public class ReceiveActivity extends AppCompatActivity {
             item.setLocationId(tokenManager.getCurrentLocation());
 
             addToInventory(item);
-
         });
 
     }
@@ -159,9 +155,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
                 supplierSpinner.setVisibility(View.VISIBLE);
                 qtyEditText.setVisibility(View.VISIBLE);
-
                 confirmButton.setVisibility(View.VISIBLE);
-                continueButton.setVisibility(View.VISIBLE);
 
                 if (selectedProduct.getCanExpire()) {
                     expEditText.setVisibility(View.VISIBLE);
@@ -200,21 +194,7 @@ public class ReceiveActivity extends AppCompatActivity {
         });
     }
 
-    private void addToInventory() {
-        int quantity = Integer.parseInt(qtyEditText.getText().toString());
-
-        // TODO: retrieve a LocalDateTime from date picker
-        LocalDateTime expirationDate = null;
-
-        ReceiveItemDTO item = new ReceiveItemDTO();
-        item.setItemQuantity(quantity);
-        item.setExpirationDate(selectedProduct.getCanExpire() ? expirationDate : null);
-        item.setReceivedDate(LocalDateTime.now());
-        item.setProductId(String.valueOf(selectedProduct.getProductId()));
-        item.setSupplierId(selectedSupplier.getSupplierId());
-        TokenManager tokenManager = new TokenManager(ReceiveActivity.this);
-        item.setLocationId(tokenManager.getCurrentLocation());
-
+    private void addToInventory(ReceiveItemDTO item) {
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         Call<Void> call = apiService.receiveItem(item);
         call.enqueue(new Callback<Void>() {
@@ -231,10 +211,10 @@ public class ReceiveActivity extends AppCompatActivity {
                     supplierSpinner.setVisibility(View.GONE);
                     qtyEditText.setVisibility(View.GONE);
                     expEditText.setVisibility(View.GONE);
-                    submitButton.setVisibility(View.GONE);
+                    confirmButton.setVisibility(View.GONE);
                     cancelButton.setVisibility(View.GONE);
                   
-                  //TODO: it's printing at the same time?
+                  //TODO: it's printing at the same time? Do we show message that it has been printed?
 
                     new AlertDialog.Builder(ReceiveActivity.this)
                             .setTitle("Continue?")

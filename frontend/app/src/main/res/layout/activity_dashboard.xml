@@ -42,20 +42,5 @@
         android:text="Consume Inventory"
         android:layout_marginBottom="8dp"/>
 
-    <Button
-        android:id="@+id/transaction_logs_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Transaction Logs"
-        android:visibility="gone"
-        android:layout_marginBottom="8dp"/>
-
-    <Button
-        android:id="@+id/inventory_thresholds_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inventory Thresholds"
-        android:visibility="gone"
-        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>

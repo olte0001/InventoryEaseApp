@@ -19,9 +19,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoggingActivity extends AppCompatActivity {
-    private TextView welcomeTextView;
     private EditText usernameInput;
     private EditText passwordInput;
+    private String schemaName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class LoggingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Initialize views
-        welcomeTextView = findViewById(R.id.welcome_textview);
+        TextView welcomeTextView = findViewById(R.id.welcome_textview);
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
 
@@ -40,6 +40,9 @@ public class LoggingActivity extends AppCompatActivity {
         } else {
             welcomeTextView.setText("Welcome!");
         }
+
+        // Extract schema name
+        schemaName = getIntent().getStringExtra("schemaName");
 
         // Set up login button click listener: when submit button pressed, take user credentials and .loginUser() which is down below
         Button submitButton = findViewById(R.id.loginSubmitButton);
@@ -79,7 +82,8 @@ public class LoggingActivity extends AppCompatActivity {
 
                     String company = getIntent().getStringExtra("companyName");
                     Intent intent = new Intent(LoggingActivity.this, CurrentLocationActivity.class);
-                    intent.putExtra("companyName", company);  //TODO: get schema name from response
+                    intent.putExtra("companyName", company);
+                    intent.putExtra("schemaName", schemaName);
                     startActivity(intent);
                     finish();
                 } else {
